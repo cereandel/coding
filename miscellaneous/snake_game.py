@@ -1,4 +1,3 @@
-# Reference: https://www.edureka.co/blog/snake-game-with-pygame/#building
 import random
 import pygame
 
@@ -11,6 +10,8 @@ game_display = pygame.display.set_mode((game_display_width, game_display_height)
 clock = pygame.time.Clock()
 snake_dimentions = 10
 snake_velocity = 12
+snake_coordinate_x = game_display_width / 2
+snake_coordinate_y = game_display_height / 2
 food_coordinate_x = food_coordinate_y = 0
 
 white = (255, 255, 255)
@@ -21,6 +22,12 @@ green = (0, 255, 0)
 blue = (50, 153, 213)
 
 font_style = pygame.font.SysFont(None, 50)
+score_font = pygame.font.SysFont("comicsansms", 35)
+
+
+def message(msg, color):
+    mesg = font_style.render(msg, True, color)
+    game_display.blit(mesg, [game_display_width / 6, game_display_height / 3])
 
 
 def game_over_message(msg1, msg2, msg3, color1, color2):
@@ -56,32 +63,60 @@ def generate_food():
     )
 
 
+def draw_snake(snake_dimentions, snake_list):
+    for coordinate in snake_list:
+        pygame.draw.rect(
+            game_display,
+            black,
+            [coordinate[0], coordinate[1], snake_dimentions, snake_dimentions],
+        )
+
+
+def draw_food():
+    pygame.draw.rect(
+        game_display,
+        green,
+        [food_coordinate_x, food_coordinate_y, snake_dimentions, snake_dimentions],
+    )
+
+
+def show_score(score):
+    value = score_font.render("Puntaje: " + str(score), True, yellow)
+    game_display.blit(value, [0, 0])
+
+
 def gameLoop():
     global snake_velocity
+    global snake_coordinate_x
+    global snake_coordinate_y
     game_over = False
     game_closed = False
 
     action_used_x = 0
     action_used_y = 0
 
-    snake_coordinate_x = game_display_width / 2
-    snake_coordinate_y = game_display_height / 2
+    snake_list = []
+    snake_length = 1
 
     generate_food()
 
     while not game_over:
-        while game_closed == True:
-            game_display.fill(white)
+        while game_closed:
+            game_display.fill(blue)
             game_over_message(
                 "GAME OVER!", "Jugar de Nuevo (1)", "Salir(2)", red, black
             )
+            show_score(snake_length - 1)
             pygame.display.update()
+
             for event in pygame.event.get():
                 if event.type == pygame.KEYDOWN:
                     if event.key == pygame.K_2:
-                        game_over = True
-                        game_closed = False
+                        quit()
                     if event.key == pygame.K_1:
+                        snake_velocity = 12
+                        snake_coordinate_x = game_display_width / 2
+                        snake_coordinate_y = game_display_height / 2
                         gameLoop()
                 elif event.type == pygame.QUIT:
                     quit()
@@ -122,23 +157,23 @@ def gameLoop():
         ):
             game_closed = True
 
-        game_display.fill(white)
-        pygame.draw.rect(
-            game_display,
-            black,
-            [
-                snake_coordinate_x,
-                snake_coordinate_y,
-                snake_dimentions,
-                snake_dimentions,
-            ],
-        )
-        pygame.draw.rect(
-            game_display,
-            blue,
-            [food_coordinate_x, food_coordinate_y, snake_dimentions, snake_dimentions],
-        )
+        game_display.fill(blue)
+        snake_head = []
+        snake_head.append(snake_coordinate_x)
+        snake_head.append(snake_coordinate_y)
+        snake_list.append(snake_head)
 
+        draw_food()
+
+        if len(snake_list) > snake_length:
+            del snake_list[0]
+
+        for coordinates in snake_list[:-1]:
+            if coordinates == snake_head:
+                game_closed = True
+
+        draw_snake(snake_dimentions, snake_list)
+        show_score(snake_length)
         pygame.display.update()
 
         if (
@@ -147,6 +182,7 @@ def gameLoop():
         ):
             generate_food()
             snake_velocity += 1
+            snake_length += 1
 
         clock.tick(snake_velocity)
 
