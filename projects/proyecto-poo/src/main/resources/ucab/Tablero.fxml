@@ -11,17 +11,18 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" styleClass="root" stylesheets="@css/Tablero.css" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ucab.SceneController">
    <top>
       <BorderPane prefHeight="156.0" prefWidth="600.0" BorderPane.alignment="CENTER">
          <left>
-            <Pane prefHeight="157.0" prefWidth="136.0" style="-fx-background-color: azure;" BorderPane.alignment="CENTER">
+            <Pane prefHeight="115.0" prefWidth="128.0" style="-fx-background-color: azure;" BorderPane.alignment="CENTER">
                <effect>
                   <InnerShadow />
                </effect>
                <children>
-                  <VBox alignment="TOP_CENTER" layoutY="2.0" prefHeight="113.0" prefWidth="136.0" spacing="5.0">
+                  <VBox alignment="CENTER" layoutY="2.0" prefHeight="113.0" prefWidth="132.0" spacing="5.0">
                      <children>
                         <Label alignment="CENTER" text="MAQUINA">
                            <font>
@@ -59,6 +60,17 @@
                </BorderPane.margin>
             </Button>
          </top>
+         <right>
+            <VBox alignment="BOTTOM_CENTER" prefHeight="132.0" prefWidth="102.0" BorderPane.alignment="CENTER">
+               <children>
+                  <Text fx:id="infoTurno" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </Text>
+               </children>
+            </VBox>
+         </right>
       </BorderPane>
    </top>
    <bottom>
@@ -80,7 +92,7 @@
             <Insets bottom="3.0" left="3.0" right="3.0" />
          </BorderPane.margin>
          <center>
-            <HBox alignment="CENTER" prefHeight="122.0" prefWidth="561.0" spacing="30.0" BorderPane.alignment="CENTER">
+            <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="122.0" prefWidth="561.0" spacing="30.0" BorderPane.alignment="CENTER">
                <BorderPane.margin>
                   <Insets />
                </BorderPane.margin>

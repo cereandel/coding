@@ -3,16 +3,6 @@ package ucab.clasesCarta;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 
-/**
- * La clase abstracta Carta representa una carta genérica en un juego de cartas.
- * Proporciona métodos para obtener y establecer el ID de la carta y su color.
- * Las clases concretas que heredan de Carta deben implementar sus propios
- * métodos
- * específicos para acciones relacionadas con el juego.
- *
- *
- * @version 1.0
- */
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.EXISTING_PROPERTY, property = "idCarta", visible = true)
 @JsonSubTypes({
         // cartas azules
@@ -82,58 +72,27 @@ public abstract class Carta {
     public Carta() {
     }
 
-    /**
-     * Obtiene el ID de la carta.
-     *
-     * @return El ID de la carta.
-     */
     public String getIdCarta() {
         return idCarta;
     }
 
-    /**
-     * Establece el ID de la carta.
-     *
-     * @param idCarta El nuevo ID de la carta.
-     */
     public void setIdCarta(String idCarta) {
         this.idCarta = idCarta;
     }
 
-    /**
-     * Obtiene el color de la carta.
-     *
-     * @return El color de la carta.
-     */
     public char getColor() {
         return color;
     }
 
-    /**
-     * Establece el color de la carta.
-     *
-     * @param color El nuevo color de la carta.
-     */
     public void setColor(char color) {
         this.color = color;
     }
 
-    /**
-     * Constructor para crear una carta con un ID y un color específicos.
-     *
-     * @param idCarta El ID de la carta.
-     * @param color   El color de la carta.
-     */
     public Carta(String idCarta, char color) {
         this.idCarta = idCarta;
         this.color = color;
     }
 
-    /**
-     * Devuelve una representación en cadena del color de la carta.
-     *
-     * @return El color de la carta como una cadena.
-     */
     @Override
     public String toString() {
         return String.valueOf(this.color);

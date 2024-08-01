@@ -12,23 +12,11 @@ public class Juego {
     private int indiceTurno;
     private boolean sentidoRegular;
 
-    /**
-     * Constructor vacío para la clase Juego.
-     */
     public Juego() {
     }
 
-    /**
-     * Constructor completo para la clase Juego.
-     *
-     * @param jugadores      La lista de jugadores.
-     * @param turnos         La lista de turnos.
-     * @param mazoGeneral    El mazo general de cartas.
-     * @param mazoDescarte   El mazo de descarte.
-     * @param indiceTurno    El índice del turno actual.
-     * @param sentidoRegular Indica si el juego sigue un sentido regular (true) o inverso (false).
-     */
-    public Juego(ListaJugadores jugadores, ListaTurnos turnos, ListaCartas mazoGeneral, ListaCartas mazoDescarte,
+    public Juego(ListaJugadores jugadores, @SuppressWarnings("exports") ListaTurnos turnos, ListaCartas mazoGeneral,
+            ListaCartas mazoDescarte,
             int indiceTurno, boolean sentidoRegular) {
         this.jugadores = jugadores;
         this.turnos = turnos;
@@ -46,11 +34,12 @@ public class Juego {
         this.jugadores = jugadores;
     }
 
+    @SuppressWarnings("exports")
     public ListaTurnos getTurnos() {
         return turnos;
     }
 
-    public void setTurnos(ListaTurnos turnos) {
+    public void setTurnos(@SuppressWarnings("exports") ListaTurnos turnos) {
         this.turnos = turnos;
     }
 

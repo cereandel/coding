@@ -1,22 +1,7 @@
 package ucab.clasesCarta;
 
-/**
- * La clase GeneradorMazo se encarga de crear un mazo de cartas para un juego
- * específico.
- * Contiene métodos para crear cartas de colores, comodines y generar el mazo
- * completo.
- * Las cartas se agregan a una lista de cartas (ListaCartas).
- *
- *
- * @version 1.0
- */
 public final class GeneradorMazo {
-    /**
-     * Crea cartas enumeradas de un color específico y las agrega al mazo.
-     *
-     * @param color El color de las cartas (por ejemplo, 'B' para azul).
-     * @param mazo  La lista de cartas donde se agregarán las cartas creadas.
-     */
+
     public static void crearCartaColor(char color, ListaCartas mazo) {
         for (int i = 0; i < 10; i++) {
             String colorString = Character.toString(color);
@@ -27,11 +12,6 @@ public final class GeneradorMazo {
         crearComodinesColor(color, mazo);
     }
 
-    /**
-     * Crea comodines estándar (TomaCuatro y CambiarColor) y los agrega al mazo.
-     *
-     * @param mazo La lista de cartas donde se agregarán los comodines.
-     */
     public static void crearComodines(ListaCartas mazo) {
         for (int i = 0; i < 4; i++) {
             mazo.agregarCarta(new TomaCuatro("CT4", 'N'));
@@ -39,13 +19,6 @@ public final class GeneradorMazo {
         }
     }
 
-    /**
-     * Crea comodines de un color específico (TomaDos, PierdeTurno y CambiarSentido)
-     * y los agrega al mazo.
-     *
-     * @param color El color de los comodines (por ejemplo, 'B' para azul).
-     * @param mazo  La lista de cartas donde se agregarán los comodines de color.
-     */
     public static void crearComodinesColor(char color, ListaCartas mazo) {
         for (int i = 0; i < 2; i++) {
             String colorString = Character.toString(color);
@@ -55,11 +28,6 @@ public final class GeneradorMazo {
         }
     }
 
-    /**
-     * Crea el mazo completo de cartas (colores y comodines) y lo mezcla.
-     *
-     * @return El mazo completo de cartas.
-     */
     public static ListaCartas crear() {
         ListaCartas mazo = new ListaCartas();
 

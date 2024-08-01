@@ -20,40 +20,20 @@ import ucab.clasesUtilidad.Juego;
 import ucab.gestionJugador.Jugador;
 import ucab.gestionJugador.ListaJugadores;
 
-/**
- * Esta clase gestiona las partidas del juego.
- */
 public final class GestorDePartida {
     private static Stage stage;
     private static Parent root;
 
-    /**
-     * Crea un mazo de cartas para la partida.
-     *
-     * @return Un mazo de cartas.
-     */
     public static ListaCartas crearMazo() {
         return GeneradorMazo.crear();
     }
 
-    /**
-     * Elimina la primera carta del mazo y la agrega al mazo de descarte.
-     *
-     * @param mazo         El mazo de cartas.
-     * @param mazoDescarte El mazo de descarte.
-     */
     public static void eliminarPrimeraCarta(ListaCartas mazo, ListaCartas mazoDescarte) {
         // Utilizar la primera carta del mazo como la primera carta del mazo de descarte
         mazoDescarte.agregarCarta(mazo.get(0));
         mazo.remove(0);
     }
 
-    /**
-     * Reparte el mazo de cartas entre los jugadores.
-     *
-     * @param mazo El mazo de cartas.
-     * @return El mazo de cartas del jugador.
-     */
     public static ListaCartas repartirMazo(ListaCartas mazo) {
         ListaCartas mazoJugador = new ListaCartas();
         // Repartir el mazo para cada uno
@@ -66,13 +46,6 @@ public final class GestorDePartida {
         return mazoJugador;
     }
 
-    /**
-     * Crea una lista de jugadores para la partida.
-     *
-     * @param cantidadDeJugadores La cantidad de jugadores en la partida.
-     * @param mazo                El mazo de cartas.
-     * @return Una lista de jugadores.
-     */
     private static ListaJugadores crearJugadores(int cantidadDeJugadores, String nombreJugador, ListaCartas mazo) {
         ListaJugadores jugadores = new ListaJugadores();
         int id = 0;
@@ -83,12 +56,6 @@ public final class GestorDePartida {
         return jugadores;
     }
 
-    /**
-     * Crea una lista de turnos para la partida.
-     *
-     * @param jugadores La lista de jugadores.
-     * @return Una lista de turnos.
-     */
     private static ListaTurnos crearTurnos(ListaJugadores jugadores) {
         ListaTurnos turnos = new ListaTurnos();
         for (Jugador jugador : jugadores.getListaJugadores()) {
@@ -98,11 +65,6 @@ public final class GestorDePartida {
         return turnos;
     }
 
-    /**
-     * Crea una nueva partida con la cantidad de jugadores especificada.
-     *
-     * @param cantidadDeJugadores La cantidad de jugadores en la partida.
-     */
     public static void crear(int cantidadDeJugadores, String nombreJugador, ActionEvent event) throws IOException {
 
         ListaCartas mazoGeneral = crearMazo();
@@ -116,14 +78,7 @@ public final class GestorDePartida {
         partida.iniciar(event);
     }
 
-    /**
-     * Genera una nueva escena cargando el archivo FXML especificado y muestra la ventana correspondiente.
-     *
-     * @param ruta  La ruta al archivo FXML.
-     * @param event El evento que desencadenó la acción (por ejemplo, un clic en un botón).
-     * @throws IOException Si ocurre algún error al cargar el archivo FXML.
-     */
-    public static void generarEscena(String ruta, @SuppressWarnings("exports") ActionEvent event) throws IOException {
+    public static void generarEscena(String ruta, ActionEvent event) throws IOException {
         root = FXMLLoader.load(SceneController.class.getResource(ruta));
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         Rectangle2D screenSize = Screen.getPrimary().getVisualBounds();
@@ -133,14 +88,7 @@ public final class GestorDePartida {
         stage.show();
     }
 
-    /**
-     * Carga una partida guardada desde un archivo JSON y continúa con la partida o muestra un mensaje
-     * si no existe un archivo válido.
-     *
-     * @param event El evento que desencadenó la acción (un clic en un botón).
-     * @throws IOException Si ocurre algún error al leer el archivo JSON.
-     */
-    public static void cargar(@SuppressWarnings("exports") ActionEvent event) throws IOException {
+    public static void cargar(ActionEvent event) throws IOException {
         File file = new File("archivos/partida.json");
         if (file.exists() && !file.isDirectory()) {
             Juego juego = ArchivoJson.leer(file.getPath());
@@ -162,17 +110,8 @@ public final class GestorDePartida {
         }
     }
 
-    /**
-     * Gestiona el cambio de turno en sentido regular o inverso.
-     *
-     * @param indiceTurno     El índice actual del turno.
-     * @param mazoDescarte    El mazo de descarte.
-     * @param turnos          La lista de turnos.
-     * @param sentidoRegular  Indica si el sentido del juego es regular (true) o inverso (false).
-     * @return El nuevo índice del turno.
-     */
     public static int gestorTurnos(int indiceTurno, ListaCartas mazoDescarte, ListaTurnos turnos,
-                                   boolean sentidoRegular) {
+            boolean sentidoRegular) {
         if (sentidoRegular) {
             indiceTurno++;
             if (indiceTurno >= turnos.size()) {

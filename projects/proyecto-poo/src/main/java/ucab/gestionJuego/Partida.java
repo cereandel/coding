@@ -9,7 +9,6 @@ import ucab.clasesUtilidad.ArchivoJson;
 
 import java.io.IOException;
 import java.util.LinkedList;
-import java.util.List;
 
 public class Partida {
     private static ListaJugadores jugadores;
@@ -22,7 +21,8 @@ public class Partida {
     private static Boolean invalido;
     private static Boolean saltado;
 
-    public Partida(ListaJugadores jugadores, ListaTurnos turnos, ListaCartas mazoGeneral, ListaCartas mazoDescarte, int indiceTurno, boolean sentidoRegular, boolean primeraVuelta) {
+    public Partida(ListaJugadores jugadores, ListaTurnos turnos, ListaCartas mazoGeneral, ListaCartas mazoDescarte,
+            int indiceTurno, boolean sentidoRegular, boolean primeraVuelta) {
         Partida.jugadores = jugadores;
         Partida.turnos = turnos;
         Partida.mazoGeneral = mazoGeneral;
@@ -37,16 +37,16 @@ public class Partida {
     public void iniciar(ActionEvent event) throws IOException {
         Jugador maquina = jugadores.buscar("#00");
         Jugador jugador = jugadores.buscar("#001");
-        IoPartida.imprimirEncabezadoPartida(mazoDescarte);
-        SceneController.escenaPartida(event, jugador.getNombre(), maquina.getMazo().size(), mazoDescarte.get(0).getIdCarta(), jugador.getMazo());
+        SceneController.escenaPartida(event, jugador.getNombre(), maquina.getMazo().size(),
+                mazoDescarte.get(0).getIdCarta(), jugador.getMazo(),
+                turnos.getListaTurnos().get(0));
     }
 
-    public static void actualizarJuego(String inputUsuario) throws IOException {
+    public static void actualizarJuego(String inputUsuario) throws IOException, InterruptedException {
         Turno turno = null;
         String input = "";
         Jugador maquina = jugadores.buscar("#00");
         Jugador jugador = jugadores.buscar("#001");
-
         while (primeraVuelta) {
             Carta primeraCarta = mazoDescarte.get(0);
             if (primeraCarta instanceof TomaDos) {
@@ -57,30 +57,26 @@ public class Partida {
             } else if (primeraCarta instanceof PierdeTurno) {
                 indiceTurno = PartidaUtilidades.saltarTurno(sentidoRegular, indiceTurno, turnos.size());
                 primeraVuelta = false;
-                SceneController.turnoMaquina();
             } else if (primeraCarta instanceof CambiarSentido) {
                 sentidoRegular = PartidaUtilidades.accionReversa(sentidoRegular);
                 indiceTurno = PartidaUtilidades.saltarTurno(sentidoRegular, indiceTurno, turnos.size());
                 primeraVuelta = false;
-                SceneController.turnoMaquina();
             } else if (primeraCarta instanceof TomaCuatro || primeraCarta instanceof CambiarColor) {
                 mazoGeneral.agregarCarta(mazoDescarte.get(0));
                 mazoDescarte.remove(0);
                 mazoGeneral.shuffle();
                 GestorDePartida.eliminarPrimeraCarta(mazoGeneral, mazoDescarte);
-                SceneController.actualizarEscena(mazoDescarte.get(0).getIdCarta(), jugador.getMazo(), maquina.getMazo().size());
+                SceneController.actualizarEscena(mazoDescarte.get(0).getIdCarta(), jugador.getMazo(),
+                        maquina.getMazo().size(), maquina.getNombre(), indiceTurno);
             } else {
                 primeraVuelta = false;
                 break;
             }
         }
-        ///////////////////////////////////////////////////////////////////
         if (mazoGeneral.size() < 10)
             PartidaUtilidades.vaciarDescartes(mazoDescarte, mazoGeneral);
         turno = turnos.getListaTurnos().get(indiceTurno);
-        IoPartida.imprimirProgresoPartida(mazoDescarte, maquina, turno);
         if (!PartidaUtilidades.cartasJugables(turno.getReferenciaJugador().getMazo(), mazoDescarte.get(0))) {
-            IoPartida.imprimirSinCartas(turno);
             if (turno.getReferenciaJugador().getId() != "#00")
                 SceneController.sinCartas();
             turno.getReferenciaJugador().getMazo().agregarCarta(mazoGeneral.get(0));
@@ -97,24 +93,19 @@ public class Partida {
                 input = IoPartida.seleccionarCartaMaquina(input, turno, mazoDescarte);
             }
             if (!PartidaUtilidades.cartaExiste(input, turno.getReferenciaJugador().getMazo())) {
-                IoPartida.imprimirCartaInvalida();
                 SceneController.cartaInvalida();
                 invalido = true;
             } else {
                 if (!PartidaUtilidades.validarCartaColor(input, mazoDescarte.get(0))
                         && !PartidaUtilidades.validarCartaNumero(input, mazoDescarte.get(0))) {
-                    System.out.println("entro aqui 2");
-                    IoPartida.imprimirCartaInvalida();
                     SceneController.cartaInvalida();
                     invalido = true;
                 } else {
                     if (turno.getReferenciaJugador().getMazo().size() == 2) {
                         if (turno.getReferenciaJugador().getId() != "#00") {
                             SceneController.cantarUno(0);
-                            //IoPartida.cantarUno(turno.getReferenciaJugador().getMazo(), mazoGeneral, 0);
                         } else {
                             SceneController.cantarUno(1);
-                            //IoPartida.cantarUno(turno.getReferenciaJugador().getMazo(), mazoGeneral, 1);
                         }
                     }
                     PartidaUtilidades.lanzarCarta(turno.getReferenciaJugador().getMazo(), mazoDescarte,
@@ -215,19 +206,13 @@ public class Partida {
             }
         }
 
-        IoPartida.imprimirFinalVuelta(turno);
-        if (turno.getReferenciaJugador().getId() == "#00") {
-            System.out.println("opcion elegida: " + input);
-        }
         if (PartidaUtilidades.hayGanador(jugadores)) {
-            IoPartida.imprimirGanador(turno);
             ArchivoJson.guardar(jugadores, turnos, mazoGeneral, mazoDescarte, indiceTurno, sentidoRegular);
             int puntaje = 0;
             if (jugador.getMazo().size() == 0) {
                 puntaje = PartidaUtilidades.puntaje(maquina.getMazo());
                 LinkedList<String> estadisticas = new LinkedList<>();
-                estadisticas.add(jugador.getNombre() +",puntaje:" + puntaje);
-                ArchivoJson.guardarEstadisticas(estadisticas);
+                estadisticas.add(jugador.getNombre() + ",puntaje:" + puntaje);
             } else {
                 puntaje = PartidaUtilidades.puntaje(jugador.getMazo());
             }
@@ -236,12 +221,12 @@ public class Partida {
         }
         if (turno.getReferenciaJugador().getId() != "#00" && !saltado && !invalido) {
             ArchivoJson.guardar(jugadores, turnos, mazoGeneral, mazoDescarte, indiceTurno, sentidoRegular);
-            SceneController.turnoMaquina();
         } else {
             saltado = false;
             invalido = false;
         }
         ArchivoJson.guardar(jugadores, turnos, mazoGeneral, mazoDescarte, indiceTurno, sentidoRegular);
-        SceneController.actualizarEscena(mazoDescarte.get(0).getIdCarta(), jugador.getMazo(), maquina.getMazo().size());
+        SceneController.actualizarEscena(mazoDescarte.get(0).getIdCarta(),
+                jugador.getMazo(), maquina.getMazo().size(), turno.getReferenciaJugador().getNombre(), indiceTurno);
     }
 }
