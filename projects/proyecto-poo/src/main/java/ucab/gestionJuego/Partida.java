@@ -42,6 +42,22 @@ public class Partida {
                 turnos.getListaTurnos().get(0));
     }
 
+    public static int gestorTurnos(int indiceTurno, ListaCartas mazoDescarte, ListaTurnos turnos,
+            boolean sentidoRegular) {
+        if (sentidoRegular) {
+            indiceTurno++;
+            if (indiceTurno >= turnos.size()) {
+                indiceTurno = 0;
+            }
+        } else {
+            indiceTurno--;
+            if (indiceTurno < 0) {
+                indiceTurno = turnos.size() - 1;
+            }
+        }
+        return indiceTurno;
+    }
+
     public static void actualizarJuego(String inputUsuario) throws IOException, InterruptedException {
 
         Turno turno = null;
@@ -84,7 +100,7 @@ public class Partida {
                 SceneController.sinCartas();
             turno.getReferenciaJugador().getMazo().agregarCarta(mazoGeneral.get(0));
             mazoGeneral.remove(0);
-            indiceTurno = GestorDePartida.gestorTurnos(indiceTurno, mazoDescarte, turnos, sentidoRegular);
+            indiceTurno = gestorTurnos(indiceTurno, mazoDescarte, turnos, sentidoRegular);
         } else {
             if (!turno.getReferenciaJugador().getId().equals("#00")) {
                 if (jugador.getMazo().size() > 7) {
@@ -203,7 +219,7 @@ public class Partida {
                         saltado = true;
                     }
                     if (mazoDescarte.getListaCartas().get(0) instanceof CartaEnumerada) {
-                        indiceTurno = GestorDePartida.gestorTurnos(indiceTurno, mazoDescarte, turnos,
+                        indiceTurno = gestorTurnos(indiceTurno, mazoDescarte, turnos,
                                 sentidoRegular);
                     }
                 }

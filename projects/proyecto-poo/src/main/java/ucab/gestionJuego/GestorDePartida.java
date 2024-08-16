@@ -79,23 +79,6 @@ public final class GestorDePartida {
         partida.iniciar(event);
     }
 
-    // meter en clase correspondiente
-    public static int gestorTurnos(int indiceTurno, ListaCartas mazoDescarte, ListaTurnos turnos,
-            boolean sentidoRegular) {
-        if (sentidoRegular) {
-            indiceTurno++;
-            if (indiceTurno >= turnos.size()) {
-                indiceTurno = 0;
-            }
-        } else {
-            indiceTurno--;
-            if (indiceTurno < 0) {
-                indiceTurno = turnos.size() - 1;
-            }
-        }
-        return indiceTurno;
-    }
-
     public static void cargar(ActionEvent event) throws IOException {
         File file = new File("archivos/partida.json");
         if (file.exists() && !file.isDirectory()) {
