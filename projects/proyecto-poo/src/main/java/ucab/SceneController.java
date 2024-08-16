@@ -3,34 +3,27 @@ package ucab;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.geometry.Rectangle2D;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.text.Text;
-import javafx.stage.Screen;
 import javafx.stage.Stage;
 import ucab.clasesCarta.Carta;
 import ucab.clasesCarta.ListaCartas;
 import ucab.gestionJuego.GestorDePartida;
 import ucab.gestionJuego.Partida;
 import ucab.gestionJuego.Turno;
-import javafx.animation.PauseTransition;
-import javafx.util.Duration;
-
+//import javafx.animation.PauseTransition;
+//import javafx.util.Duration;
 import java.io.IOException;
 import java.net.URL;
 import java.util.*;
-
 import static ucab.gestionJuego.PartidaUtilidades.obtenerRuta;
 
-/**
- * Controlador para las escenas de la aplicación.
- */
 public final class SceneController implements javafx.fxml.Initializable {
+
         private static Stage stage;
         private static Parent root;
         private static final int cantidadDeJugadores = 2;
@@ -109,21 +102,10 @@ public final class SceneController implements javafx.fxml.Initializable {
         @FXML
         private Label infoEstadisticas;
 
-        @FXML
-        private Text infoTurno;
-        private static Text infoTurnoStatic;
-
-        /**
-         * Inicializa el controlador.
-         *
-         * @param url            La URL de la ubicación del archivo FXML.
-         * @param resourceBundle El ResourceBundle utilizado para localizar objetos.
-         */
         @Override
         public void initialize(URL url, ResourceBundle resourceBundle) {
                 nombreUsuarioStatic = nombreUsuario;
                 cantidadCartasMaquinaStatic = cantidadCartasMaquina;
-                infoTurnoStatic = infoTurno;
                 cartaDescarteStatic = cartaDescarte;
                 carta1ImagenStatic = carta1Imagen;
                 carta2ImagenStatic = carta2Imagen;
@@ -134,168 +116,122 @@ public final class SceneController implements javafx.fxml.Initializable {
                 carta7ImagenStatic = carta7Imagen;
         }
 
-        /**
-         * Carga la escena del menú principal y muestra la ventana correspondiente.
-         *
-         * @param event El evento que desencadenó la acción (un clic en un botón).
-         * @throws IOException Si ocurre algún error al cargar la escena.
-         */
         @FXML
         private void escenaMenuPrincipal(ActionEvent event) throws IOException {
                 root = FXMLLoader.load(SceneController.class.getResource("MenuPrincipal.fxml"));
                 stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-                Rectangle2D screenSize = Screen.getPrimary().getBounds();
-                Scene scene = new Scene(root, screenSize.getWidth(), screenSize.getHeight());
-                stage.setMaximized(true);
+                Scene scene = new Scene(root);
                 stage.setScene(scene);
                 stage.show();
         }
 
-        /**
-         * Sale de la aplicación.
-         */
         @FXML
         private void salir() {
                 System.exit(0);
         }
 
-        /**
-         * Carga la escena del menú secundario y muestra la ventana correspondiente.
-         *
-         * @param event El evento que desencadenó la acción (un clic en un botón).
-         * @throws IOException Si ocurre algún error al cargar la escena.
-         */
         @FXML
         private void escenaMenuSecundario(ActionEvent event) throws IOException {
                 root = FXMLLoader.load(SceneController.class.getResource("MenuSecundario.fxml"));
                 stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-                Rectangle2D screenSize = Screen.getPrimary().getVisualBounds();
-                Scene scene = new Scene(root, screenSize.getWidth(), screenSize.getHeight());
-                stage.setMaximized(true);
+                Scene scene = new Scene(root);
                 stage.setScene(scene);
                 stage.show();
         }
 
-        /**
-         * Carga la escena final y muestra la ventana correspondiente.
-         *
-         * @param event El evento que desencadenó la acción (un clic en un botón).
-         * @throws IOException Si ocurre algún error al cargar la escena.
-         */
         @FXML
         private void escenaFinal(ActionEvent event) throws IOException {
                 root = FXMLLoader.load(SceneController.class.getResource("Final.fxml"));
                 stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-                Rectangle2D screenSize = Screen.getPrimary().getVisualBounds();
-                Scene scene = new Scene(root, screenSize.getWidth(), screenSize.getHeight());
+                Scene scene = new Scene(root);
                 stage.setMaximized(true);
                 stage.setScene(scene);
                 stage.show();
         }
 
-        /**
-         * Carga la escena de registro y muestra la ventana correspondiente.
-         *
-         * @param event El evento que desencadenó la acción (un clic en un botón).
-         * @throws IOException Si ocurre algún error al cargar la escena.
-         */
         @FXML
         private void escenaRegistro(ActionEvent event) throws IOException {
                 root = FXMLLoader.load(SceneController.class.getResource("RegistroDatos.fxml"));
                 stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-                Rectangle2D screenSize = Screen.getPrimary().getVisualBounds();
-                Scene scene = new Scene(root, screenSize.getWidth(), screenSize.getHeight());
-                stage.setMaximized(true);
+                Scene scene = new Scene(root);
                 stage.setScene(scene);
                 stage.show();
         }
 
-        /**
-         * Crea la partida.
-         *
-         * @param event El evento que desencadenó la acción (un clic en un botón).
-         * @throws IOException Si ocurre algún error relacionado con el registro de
-         *                     datos.
-         */
         @FXML
         private void RegistroDatos(ActionEvent event) throws IOException {
-                GestorDePartida.crear(cantidadDeJugadores, username.getText(), event);
+                ArrayList<String> nombreJugadores = new ArrayList<>();
+                nombreJugadores.add(username.getText());
+                GestorDePartida.crear(cantidadDeJugadores, nombreJugadores, event);
         }
 
-        /**
-         * Carga la escena de la partida y muestra la ventana correspondiente con los
-         * datos proporcionados.
-         *
-         * @param event          El evento que desencadenó la acción (un clic en un
-         *                       botón).
-         * @param nombre         El nombre del jugador.
-         * @param cantidadCartas La cantidad de cartas del jugador.
-         * @param cartaDescarte  La carta en el descarte.
-         * @param cartasJugador  Las cartas del jugador.
-         * @throws IOException Si ocurre algún error al cargar la escena.
-         */
         public static void escenaPartida(@SuppressWarnings("exports") ActionEvent event, String nombre,
                         int cantidadCartas,
                         String cartaDescarte, ListaCartas cartasJugador, @SuppressWarnings("exports") Turno turno)
                         throws IOException {
                 root = FXMLLoader.load(SceneController.class.getResource("Tablero.fxml"));
                 stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-                Rectangle2D screenSize = Screen.getPrimary().getVisualBounds();
-                Scene scene = new Scene(root, screenSize.getWidth(), screenSize.getHeight());
-                stage.setMaximized(true);
+                Scene scene = new Scene(root);
                 stage.setScene(scene);
                 stage.show();
 
                 nombreUsuarioStatic.setText(nombre);
-                infoTurnoStatic.setText("turno de: " + turno.getReferenciaJugador().getNombre());
                 cantidadCartasMaquinaStatic.setText("cartas: " + cantidadCartas);
                 cartaDescarteStatic
                                 .setImage(new Image(String.valueOf(
                                                 SceneController.class.getResource(obtenerRuta(cartaDescarte)))));
-                carta1ImagenStatic.setImage(new Image(
-                                String.valueOf(SceneController.class
-                                                .getResource(obtenerRuta(cartasJugador.get(0).getIdCarta())))));
-                carta2ImagenStatic.setImage(new Image(
-                                String.valueOf(SceneController.class
-                                                .getResource(obtenerRuta(cartasJugador.get(1).getIdCarta())))));
-                carta3ImagenStatic.setImage(new Image(
-                                String.valueOf(SceneController.class
-                                                .getResource(obtenerRuta(cartasJugador.get(2).getIdCarta())))));
-                carta4ImagenStatic.setImage(new Image(
-                                String.valueOf(SceneController.class
-                                                .getResource(obtenerRuta(cartasJugador.get(3).getIdCarta())))));
-                carta5ImagenStatic.setImage(new Image(
-                                String.valueOf(SceneController.class
-                                                .getResource(obtenerRuta(cartasJugador.get(4).getIdCarta())))));
-                carta6ImagenStatic.setImage(new Image(
-                                String.valueOf(SceneController.class
-                                                .getResource(obtenerRuta(cartasJugador.get(5).getIdCarta())))));
-                carta7ImagenStatic.setImage(new Image(
-                                String.valueOf(SceneController.class
-                                                .getResource(obtenerRuta(cartasJugador.get(6).getIdCarta())))));
+                if (cartasJugador.size() > 0) {
+                        carta1ImagenStatic.setImage(new Image(
+                                        String.valueOf(SceneController.class
+                                                        .getResource(obtenerRuta(cartasJugador.get(0).getIdCarta())))));
+                }
+                if (cartasJugador.size() > 1) {
+                        carta2ImagenStatic.setImage(new Image(
+                                        String.valueOf(SceneController.class
+                                                        .getResource(obtenerRuta(cartasJugador.get(1).getIdCarta())))));
+                }
+                if (cartasJugador.size() > 2) {
+                        carta3ImagenStatic.setImage(new Image(
+                                        String.valueOf(SceneController.class
+                                                        .getResource(obtenerRuta(cartasJugador.get(2).getIdCarta())))));
+                }
+                if (cartasJugador.size() > 3) {
+                        carta4ImagenStatic.setImage(new Image(
+                                        String.valueOf(SceneController.class
+                                                        .getResource(obtenerRuta(cartasJugador.get(3).getIdCarta())))));
+                }
+                if (cartasJugador.size() > 4) {
+                        carta5ImagenStatic.setImage(new Image(
+                                        String.valueOf(SceneController.class
+                                                        .getResource(obtenerRuta(cartasJugador.get(4).getIdCarta())))));
+                }
+                if (cartasJugador.size() > 5) {
+                        carta6ImagenStatic.setImage(new Image(
+                                        String.valueOf(SceneController.class
+                                                        .getResource(obtenerRuta(cartasJugador.get(5).getIdCarta())))));
+                }
+                if (cartasJugador.size() > 6) {
+                        carta7ImagenStatic.setImage(new Image(
+                                        String.valueOf(SceneController.class
+                                                        .getResource(obtenerRuta(cartasJugador.get(6).getIdCarta())))));
+                }
         }
 
-        /**
-         * Carga una partida guardada y continúa con la partida o muestra un mensaje si
-         * no existe un archivo válido.
-         *
-         * @param event El evento que desencadenó la acción (un clic en un botón).
-         * @throws IOException Si ocurre algún error al cargar la partida.
-         */
+        public static void generarEscena(String ruta, @SuppressWarnings("exports") ActionEvent event)
+                        throws IOException {
+                root = FXMLLoader.load(SceneController.class.getResource(ruta));
+                stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                Scene scene = new Scene(root);
+                stage.setMaximized(true);
+                stage.setScene(scene);
+                stage.show();
+        }
+
         @FXML
         private void cargarPartida(ActionEvent event) throws IOException {
                 GestorDePartida.cargar(event);
         }
 
-        /**
-         * Maneja la elección de una carta por parte del jugador.
-         *
-         * @param event El evento que desencadenó la acción (un clic en un botón).
-         * @throws IOException          Si ocurre algún error relacionado con la
-         *                              elección de la
-         *                              carta.
-         * @throws InterruptedException
-         */
         @FXML
         private void elegirCarta(ActionEvent event) throws IOException, InterruptedException {
                 Button button = (Button) event.getSource();
@@ -336,10 +272,6 @@ public final class SceneController implements javafx.fxml.Initializable {
                 }
         }
 
-        /**
-         * Muestra un diálogo de aviso indicando que el jugador no tiene cartas y se
-         * tomarán del montón.
-         */
         public static void sinCartas() {
                 Dialog<String> dialog = new Dialog<String>();
                 dialog.setTitle("Aviso");
@@ -349,10 +281,6 @@ public final class SceneController implements javafx.fxml.Initializable {
                 dialog.showAndWait();
         }
 
-        /**
-         * Muestra un diálogo de aviso indicando que la carta jugada es incorrecta y
-         * debe intentarse de nuevo.
-         */
         public static void cartaInvalida() {
                 Dialog<String> dialog = new Dialog<String>();
                 dialog.setTitle("Aviso");
@@ -362,12 +290,6 @@ public final class SceneController implements javafx.fxml.Initializable {
                 dialog.showAndWait();
         }
 
-        /**
-         * Muestra un diálogo con el nombre del jugador ganador y su puntaje.
-         *
-         * @param jugador El nombre del jugador ganador.
-         * @param puntaje El puntaje del jugador ganador.
-         */
         public static void mostrarGanador(String jugador, int puntaje) {
                 Dialog<String> dialog = new Dialog<String>();
                 dialog.setTitle("FINAL");
@@ -379,23 +301,12 @@ public final class SceneController implements javafx.fxml.Initializable {
                 dialog.showAndWait();
         }
 
-        /**
-         * Actualiza la escena del tablero con las imagenes de las cartas.
-         *
-         * @param idDescarte            El ID de la carta en el descarte.
-         * @param cartasJugador         Las cartas del jugador.
-         * @param cantidadCartasMaquina La cantidad de cartas de la máquina.
-         * @throws InterruptedException
-         * @throws IOException
-         */
         public static void actualizarEscena(String idDescarte, ListaCartas cartasJugador, int cantidadCartasMaquina,
                         String nombreTurno, int indiceTurno) throws InterruptedException, IOException {
                 cartaDescarteStatic
                                 .setImage(new Image(String
                                                 .valueOf(SceneController.class.getResource(obtenerRuta(idDescarte)))));
                 cantidadCartasMaquinaStatic.setText("cartas: " + cantidadCartasMaquina);
-                infoTurnoStatic.setText("turno de " + nombreTurno);
-
                 if (cartasJugador.size() == 1) {
                         carta1ImagenStatic.setImage(new Image(
                                         String.valueOf(SceneController.class
@@ -531,25 +442,23 @@ public final class SceneController implements javafx.fxml.Initializable {
                                         String.valueOf(SceneController.class
                                                         .getResource(obtenerRuta(cartasJugador.get(6).getIdCarta())))));
                 }
-                if (indiceTurno == 1) {
-                        PauseTransition pause = new PauseTransition(Duration.seconds(1.5));
-                        pause.setOnFinished(event -> {
-                                try {
-                                        Partida.actualizarJuego(sharedInput);
-                                } catch (IOException | InterruptedException e) {
-                                        e.printStackTrace();
-                                }
-                        });
-                        pause.play();
-                }
+                /*
+                 * AQUI ES EL DELAY DE LAS ANIMACIONES, DA UNAS EXCEPCIONES CON LOS PANELES DE
+                 * DIALOGO
+                 * if (indiceTurno == 1) {
+                 * PauseTransition pause = new PauseTransition(Duration.seconds(1.5));
+                 * pause.setOnFinished(event -> {
+                 * try {
+                 * Partida.actualizarJuego(sharedInput);
+                 * } catch (IOException | InterruptedException e) {
+                 * e.printStackTrace();
+                 * }
+                 * });
+                 * pause.play();
+                 * }
+                 */
         }
 
-        /**
-         * Muestra un diálogo de aviso indicando el color elegido y su equivalente en
-         * palabras.
-         *
-         * @param color El código de color (por ejemplo, "R" para rojo).
-         */
         public static void cambioColor(String color) {
                 switch (color) {
                         case "R" -> color = "Rojo";
@@ -565,14 +474,6 @@ public final class SceneController implements javafx.fxml.Initializable {
                 dialog.showAndWait();
         }
 
-        /**
-         * Muestra un cuadro de diálogo para que el usuario elija una carta de entre las
-         * disponibles.
-         *
-         * @param cartasJugador Las cartas disponibles para elegir.
-         * @return El ID de la carta seleccionada por el usuario (o una cadena vacía si
-         *         no se selecciona ninguna).
-         */
         public static String masDeSieteCartas(ListaCartas cartasJugador) {
                 List<String> opcionesCartas = new ArrayList<>();
                 for (Carta carta : cartasJugador.getListaCartas()) {
@@ -586,12 +487,6 @@ public final class SceneController implements javafx.fxml.Initializable {
                 return result.orElse(" ");
         }
 
-        /**
-         * Muestra un diálogo de aviso indicando que se debe cantar UNO o se recibirá
-         * una carta.
-         *
-         * @param opcion 0 para el jugador, 1 para la máquina.
-         */
         public static void cantarUno(int opcion) {
                 Dialog<String> dialog = new Dialog<String>();
                 dialog.setTitle("UNO");

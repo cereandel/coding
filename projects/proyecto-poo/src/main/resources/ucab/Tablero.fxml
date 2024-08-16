@@ -11,25 +11,24 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
-<?import javafx.scene.text.Text?>
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" styleClass="root" stylesheets="@css/Tablero.css" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ucab.SceneController">
    <top>
-      <BorderPane prefHeight="156.0" prefWidth="600.0" BorderPane.alignment="CENTER">
+      <BorderPane prefHeight="125.0" prefWidth="600.0" BorderPane.alignment="CENTER">
          <left>
-            <Pane prefHeight="115.0" prefWidth="128.0" style="-fx-background-color: azure;" BorderPane.alignment="CENTER">
+            <Pane prefHeight="101.0" prefWidth="128.0" style="-fx-background-color: azure;" BorderPane.alignment="CENTER">
                <effect>
                   <InnerShadow />
                </effect>
                <children>
-                  <VBox alignment="CENTER" layoutY="2.0" prefHeight="113.0" prefWidth="132.0" spacing="5.0">
+                  <VBox alignment="CENTER" prefHeight="92.0" prefWidth="132.0">
                      <children>
-                        <Label alignment="CENTER" text="MAQUINA">
+                        <Label alignment="CENTER" text="MÁQUINA">
                            <font>
                               <Font name="Tahoma Bold" size="12.0" />
                            </font>
                         </Label>
-                        <ImageView fitHeight="72.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="52.0" fitWidth="41.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@images/cartas/Back.jpg" />
                            </image>
@@ -47,9 +46,9 @@
             </Pane>
          </left>
          <top>
-            <Button fx:id="salir" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#escenaMenuPrincipal" BorderPane.alignment="CENTER_RIGHT">
+            <Button fx:id="salir" alignment="CENTER" contentDisplay="CENTER" graphicTextGap="1.0" mnemonicParsing="false" onAction="#escenaMenuPrincipal" prefHeight="15.0" prefWidth="20.0" BorderPane.alignment="CENTER_RIGHT">
                <graphic>
-                  <ImageView fitHeight="28.0" fitWidth="57.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="23.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@images/boton-salir.png" />
                      </image>
@@ -60,17 +59,6 @@
                </BorderPane.margin>
             </Button>
          </top>
-         <right>
-            <VBox alignment="BOTTOM_CENTER" prefHeight="132.0" prefWidth="102.0" BorderPane.alignment="CENTER">
-               <children>
-                  <Text fx:id="infoTurno" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0">
-                     <font>
-                        <Font name="System Bold" size="12.0" />
-                     </font>
-                  </Text>
-               </children>
-            </VBox>
-         </right>
       </BorderPane>
    </top>
    <bottom>
@@ -138,10 +126,27 @@
       </BorderPane>
    </bottom>
    <center>
-      <ImageView fx:id="cartaDescarte" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
-         <BorderPane.margin>
-            <Insets bottom="80.0" />
-         </BorderPane.margin>
-      </ImageView>
+      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <children>
+            <Pane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="129.0" prefWidth="110.0" style="-fx-background-color: azure;">
+               <effect>
+                  <InnerShadow />
+               </effect>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <HBox.margin>
+                  <Insets bottom="5.0" left="245.0" right="245.0" />
+               </HBox.margin>
+               <children>
+                  <HBox alignment="CENTER" prefHeight="126.0" prefWidth="112.0">
+                     <children>
+                        <ImageView fx:id="cartaDescarte" fitHeight="107.0" fitWidth="84.0" pickOnBounds="true" preserveRatio="true" />
+                     </children>
+                  </HBox>
+               </children>
+            </Pane>
+         </children>
+      </HBox>
    </center>
 </BorderPane>

@@ -6,12 +6,9 @@ import ucab.gestionJugador.Jugador;
 import ucab.gestionJugador.ListaJugadores;
 import ucab.clasesCarta.Carta;
 import ucab.clasesCarta.ListaCartas;
-
 import java.io.IOException;
 import java.util.Random;
 import java.util.Scanner;
-
-import static ucab.gestionJuego.GestorDePartida.eliminarPrimeraCarta;
 
 public final class PartidaUtilidades {
     static Scanner scanner = new Scanner(System.in);
@@ -71,7 +68,7 @@ public final class PartidaUtilidades {
     public static int tomarDosCartas(Jugador jugadorRecibe, ListaCartas mazo, ListaCartas mazoDescartes,
             int cartasAcumuladas) {
         for (int i = 1; i <= 2 + (2 * cartasAcumuladas); i++) {
-            eliminarPrimeraCarta(mazo, jugadorRecibe.getMazo());
+            ListaCartas.eliminarPrimeraCarta(mazo, jugadorRecibe.getMazo());
         }
         return 0;
     }
@@ -79,7 +76,7 @@ public final class PartidaUtilidades {
     public static int tomarCuatroCartas(Jugador jugadorRecibe, ListaCartas mazo, ListaCartas mazoDescartes,
             int cartasAcumuladas, ListaTurnos turnos, Turno turno) throws IOException {
         for (int i = 1; i <= 4 + (4 * cartasAcumuladas); i++) {
-            eliminarPrimeraCarta(mazo, jugadorRecibe.getMazo());
+            ListaCartas.eliminarPrimeraCarta(mazo, jugadorRecibe.getMazo());
         }
         cambiarColor(turno, turnos, cartasAcumuladas, mazoDescartes);
         return 0;

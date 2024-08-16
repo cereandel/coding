@@ -7,7 +7,6 @@ import java.util.List;
 public class ListaCartas {
     public List<Carta> listaCartas;
 
-
     public ListaCartas() {
         this.listaCartas = new ArrayList<>();
     }
@@ -20,11 +19,9 @@ public class ListaCartas {
         this.listaCartas.add(0, carta);
     }
 
-
     public List<Carta> getListaCartas() {
         return this.listaCartas;
     }
-
 
     public Carta get(int i) {
         return listaCartas.get(i);
@@ -34,12 +31,10 @@ public class ListaCartas {
         return listaCartas.remove(i);
     }
 
-
     public List<Carta> shuffle() {
         Collections.shuffle(listaCartas);
         return listaCartas;
     }
-
 
     public String toString() {
         StringBuilder sb = new StringBuilder();
@@ -49,24 +44,11 @@ public class ListaCartas {
         return sb.toString();
     }
 
-
-    public int cartaMasAlta() {
-        CartaEnumerada cartaAlta = null;
-        for (Carta carta : this.listaCartas) {
-            if (carta instanceof CartaEnumerada) {
-                CartaEnumerada cartaEnumerada = (CartaEnumerada) carta;
-                if (cartaAlta == null || cartaEnumerada.getNumero() > cartaAlta.getNumero()) {
-                    cartaAlta = cartaEnumerada;
-                }
-            }
-        }
-        if (cartaAlta == null) {
-            return -11;
-        } else {
-            return cartaAlta.getNumero();
-        }
+    public static void eliminarPrimeraCarta(ListaCartas mazo, ListaCartas mazoDescarte) {
+        mazoDescarte.agregarCarta(mazo.get(0));
+        mazo.remove(0);
     }
-    
+
     public int size() {
         return this.listaCartas.size();
     }
