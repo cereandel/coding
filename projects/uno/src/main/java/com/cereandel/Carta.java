@@ -13,7 +13,7 @@ public class Carta {
     }
 
     enum Valor {
-        CERO, UNO, DOS, TRES, CUATRO, CINCO, SEIS, SIETE, OCHO, NUEVE, MAS2, REVERSA, SALTO, CAMBIA_COLOR, COMODIN4;
+        CERO, UNO, DOS, TRES, CUATRO, CINCO, SEIS, SIETE, OCHO, NUEVE, TOMA_2, REVERSA, SALTO, CAMBIA_COLOR, TOMA_4;
 
         private static final Valor[] valores = Valor.values();
 

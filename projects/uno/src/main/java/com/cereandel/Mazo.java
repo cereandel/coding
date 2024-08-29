@@ -10,7 +10,7 @@ public class Mazo {
     public Mazo() {
         cartas = new ArrayList<Carta>();
         inicializar();
-        Collections.shuffle(cartas);
+        barajear();
     }
 
     public void inicializar() {
@@ -26,20 +26,36 @@ public class Mazo {
                 cartas.add(new Carta(color, Carta.Valor.getValor(j)));
             }
 
-            Carta.Valor[] valores = new Carta.Valor[] { Carta.Valor.MAS2, Carta.Valor.SALTO, Carta.Valor.REVERSA };
+            Carta.Valor[] valores = new Carta.Valor[] { Carta.Valor.TOMA_2, Carta.Valor.SALTO, Carta.Valor.REVERSA };
             for (Carta.Valor valor : valores) {
                 cartas.add(new Carta(color, valor));
                 cartas.add(new Carta(color, valor));
             }
         }
 
-        Carta.Valor[] valores = new Carta.Valor[] { Carta.Valor.CAMBIA_COLOR, Carta.Valor.COMODIN4 };
+        Carta.Valor[] valores = new Carta.Valor[] { Carta.Valor.CAMBIA_COLOR, Carta.Valor.TOMA_4 };
         for (Carta.Valor valor : valores) {
             for (int i = 0; i < 4; i++) {
                 cartas.add(new Carta(Carta.Color.COMODIN, valor));
             }
         }
 
+    }
+
+    public void barajear() {
+        Collections.shuffle(cartas);
+    }
+
+    public Carta[] agarrarCartas(int cantidad) {
+        Carta[] cartas = new Carta[cantidad];
+        for (int i = 0; i < cantidad; i++) {
+            cartas[i] = this.cartas.remove(0);
+        }
+        return cartas;
+    }
+
+    public int cantidadCartas() {
+        return cartas.size();
     }
 
 }
