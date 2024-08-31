@@ -46,6 +46,10 @@ public class Mazo {
         Collections.shuffle(cartas);
     }
 
+    public Carta agarrarCarta() {
+        return cartas.remove(0);
+    }
+
     public Carta[] agarrarCartas(int cantidad) {
         Carta[] cartas = new Carta[cantidad];
         for (int i = 0; i < cantidad; i++) {
@@ -56,6 +60,14 @@ public class Mazo {
 
     public int cantidadCartas() {
         return cartas.size();
+    }
+
+    public boolean isEmpty() {
+        return cartas.isEmpty();
+    }
+
+    public void reemplazarMazo(ArrayList<Carta> cartas) {
+        this.cartas = cartas;
     }
 
 }

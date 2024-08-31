@@ -31,10 +31,102 @@ public class Juego {
             ArrayList<Carta> mazoJugador = new ArrayList<Carta>(Arrays.asList(mazo.agarrarCartas(7)));
             mazoJugadores.add(mazoJugador);
         }
+    }
 
-        System.out.println("cantidad de cartas en mazo: " + mazo.cantidadCartas());
-        System.out.println("cartas de jugador 1: " + mazoJugadores.get(0));
-        System.out.println("cartas de jugador 2: " + mazoJugadores.get(1));
+    private static int saltarTurno(int jugadorActual, int cantidadJugadores, boolean sentidoHorario) {
+        if (sentidoHorario) {
+            jugadorActual += 2;
+            if (jugadorActual >= cantidadJugadores)
+                jugadorActual = jugadorActual - cantidadJugadores;
+        } else {
+            jugadorActual -= 2;
+            if (jugadorActual <= -1)
+                jugadorActual = jugadorActual + cantidadJugadores;
+        }
+        return jugadorActual;
+    }
+
+    public void empezarJuego(Juego juego) {
+        Carta cartaInicial = mazo.agarrarCarta();
+        colorActual = cartaInicial.getColor();
+        valorActual = cartaInicial.getValor();
+
+        if (valorActual == Carta.Valor.CAMBIA_COLOR || valorActual == Carta.Valor.TOMA_4) {
+            empezarJuego(juego);
+        }
+
+        if (valorActual == Carta.Valor.SALTO) {
+            jugadorActual = saltarTurno(jugadorActual, idJugadores.length, sentidoHorario);
+        }
+
+        if (valorActual == Carta.Valor.REVERSA) {
+            sentidoHorario = !sentidoHorario;
+            jugadorActual = saltarTurno(jugadorActual, idJugadores.length, sentidoHorario);
+        }
+
+        cartasDescarte.add(cartaInicial);
+    }
+
+    public boolean isJuegoAcabado() {
+        for (ArrayList<Carta> mazoJugador : mazoJugadores) {
+            if (mazoJugador.size() == 0) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public ArrayList<Carta> getMazoJugador(String idJugador) {
+        for (int i = 0; i < idJugadores.length; i++) {
+            if (idJugadores[i].equals(idJugador)) {
+                return mazoJugadores.get(i);
+            }
+        }
+        return null;
+    }
+
+    public int getCantidadCartasJugador(String idJugador) {
+        return (getMazoJugador(idJugador)).size();
+    }
+
+    public Carta getCartaJugador(String idJugador, int index) {
+        ArrayList<Carta> mazoJugador = getMazoJugador(idJugador);
+        return mazoJugador.get(index);
+    }
+
+    public boolean isVacioMazoJugador(String idJugador) {
+        return getMazoJugador(idJugador).isEmpty();
+    }
+
+    public boolean isCartaValida(Carta carta) {
+        return carta.getColor() == colorActual || carta.getValor() == valorActual;
+    }
+
+    public int avanzarTurno() {
+        if (sentidoHorario) {
+            jugadorActual++;
+            if (jugadorActual >= idJugadores.length)
+                jugadorActual = 0;
+        } else {
+            jugadorActual--;
+            if (jugadorActual <= -1)
+                jugadorActual = idJugadores.length - 1;
+        }
+        return jugadorActual;
+    }
+
+    public void agarrarCarta(String idjugador) {
+        if (mazo.isEmpty()) {
+            mazo.reemplazarMazo(cartasDescarte);
+            mazo.barajear();
+        }
+
+        getMazoJugador(idjugador).add(mazo.agarrarCarta());
+        jugadorActual = avanzarTurno();
+    }
+
+    public void setColorActual(@SuppressWarnings("exports") Carta.Color color) {
+        this.colorActual = color;
     }
 
 }
