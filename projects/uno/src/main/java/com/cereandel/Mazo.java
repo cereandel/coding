@@ -26,14 +26,14 @@ public class Mazo {
                 cartas.add(new Carta(color, Carta.Valor.getValor(j)));
             }
 
-            Carta.Valor[] valores = new Carta.Valor[] { Carta.Valor.TOMA_2, Carta.Valor.SALTO, Carta.Valor.REVERSA };
+            Carta.Valor[] valores = new Carta.Valor[] { Carta.Valor.TOMA_DOS, Carta.Valor.SALTO, Carta.Valor.REVERSA };
             for (Carta.Valor valor : valores) {
                 cartas.add(new Carta(color, valor));
                 cartas.add(new Carta(color, valor));
             }
         }
 
-        Carta.Valor[] valores = new Carta.Valor[] { Carta.Valor.CAMBIA_COLOR, Carta.Valor.TOMA_4 };
+        Carta.Valor[] valores = new Carta.Valor[] { Carta.Valor.CAMBIA_COLOR, Carta.Valor.TOMA_CUATRO };
         for (Carta.Valor valor : valores) {
             for (int i = 0; i < 4; i++) {
                 cartas.add(new Carta(Carta.Color.COMODIN, valor));

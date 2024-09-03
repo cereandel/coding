@@ -51,7 +51,7 @@ public class Juego {
         colorActual = cartaInicial.getColor();
         valorActual = cartaInicial.getValor();
 
-        if (valorActual == Carta.Valor.CAMBIA_COLOR || valorActual == Carta.Valor.TOMA_4) {
+        if (valorActual == Carta.Valor.CAMBIA_COLOR || valorActual == Carta.Valor.TOMA_CUATRO) {
             empezarJuego(juego);
         }
 
@@ -127,6 +127,10 @@ public class Juego {
 
     public void setColorActual(@SuppressWarnings("exports") Carta.Color color) {
         this.colorActual = color;
+    }
+
+    public ArrayList<Carta> getMazoJugador(int i) {
+        return mazoJugadores.get(i);
     }
 
 }

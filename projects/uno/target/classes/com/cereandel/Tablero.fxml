@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.control.ButtonBar?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.effect.InnerShadow?>
 <?import javafx.scene.image.Image?>
@@ -12,16 +11,16 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" styleClass="root" stylesheets="@css/Tablero.css" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.cereandel.Controller">
+<BorderPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" styleClass="root" stylesheets="@css/Tablero.css" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.cereandel.Controller">
    <top>
-      <BorderPane prefHeight="125.0" prefWidth="600.0" BorderPane.alignment="CENTER">
+      <BorderPane maxHeight="-Infinity" maxWidth="1.7976931348623157E308" prefHeight="135.0" prefWidth="600.0" BorderPane.alignment="CENTER">
          <left>
-            <Pane prefHeight="101.0" prefWidth="128.0" style="-fx-background-color: azure;" BorderPane.alignment="CENTER">
+            <Pane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="180.0" prefWidth="130.0" style="-fx-background-color: azure;" BorderPane.alignment="CENTER">
                <effect>
                   <InnerShadow />
                </effect>
                <children>
-                  <VBox alignment="CENTER" prefHeight="92.0" prefWidth="132.0">
+                  <VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="92.0" prefWidth="132.0">
                      <children>
                         <Label alignment="CENTER" text="MÁQUINA">
                            <font>
@@ -35,8 +34,11 @@
                         </ImageView>
                         <Label fx:id="cantidadCartasMaquina">
                            <font>
-                              <Font name="Tahoma" size="12.0" />
-                           </font></Label>
+                              <Font name="Tahoma Bold" size="12.0" />
+                           </font>
+                           <padding>
+                              <Insets top="4.0" />
+                           </padding></Label>
                      </children>
                   </VBox>
                </children>
@@ -45,16 +47,13 @@
                </BorderPane.margin>
             </Pane>
          </left>
-         <right>
-            <ButtonBar prefHeight="40.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
-         </right>
          <top>
-            <ImageView fitHeight="33.0" fitWidth="32.0" onMouseClicked="#salir" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
+            <ImageView fitHeight="33.0" fitWidth="32.0" onMouseClicked="#salir" preserveRatio="true" BorderPane.alignment="TOP_RIGHT">
                <image>
                   <Image url="@images/boton-salir.png" />
                </image>
                <BorderPane.margin>
-                  <Insets left="565.0" top="2.0" />
+                  <Insets />
                </BorderPane.margin>
             </ImageView>
          </top>
@@ -76,30 +75,30 @@
             </Label>
          </top>
          <BorderPane.margin>
-            <Insets bottom="3.0" left="3.0" right="3.0" />
+            <Insets bottom="5.0" left="20.0" right="20.0" />
          </BorderPane.margin>
          <center>
-            <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="122.0" prefWidth="561.0" spacing="6.0" BorderPane.alignment="CENTER">
+            <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="122.0" prefWidth="581.0" spacing="15.0" BorderPane.alignment="CENTER">
                <BorderPane.margin>
                   <Insets />
                </BorderPane.margin>
                <children>
-                  <ImageView fx:id="carta1" fitHeight="100.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true" />
-                  <ImageView fx:id="carta2" fitHeight="100.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true" />
-                  <ImageView fx:id="carta3" fitHeight="100.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true" />
-                  <ImageView fx:id="carta4" fitHeight="100.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true" />
-                  <ImageView fx:id="carta5" fitHeight="100.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true" />
-                  <ImageView fx:id="carta6" fitHeight="100.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true" />
-                  <ImageView fx:id="carta7" fitHeight="100.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fx:id="carta1" fitHeight="100.0" fitWidth="80.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" HBox.hgrow="ALWAYS" />
+                  <ImageView fx:id="carta2" fitHeight="100.0" fitWidth="80.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" HBox.hgrow="ALWAYS" />
+                  <ImageView fx:id="carta3" fitHeight="100.0" fitWidth="80.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fx:id="carta4" fitHeight="100.0" fitWidth="80.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fx:id="carta5" fitHeight="100.0" fitWidth="80.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fx:id="carta6" fitHeight="100.0" fitWidth="80.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fx:id="carta7" fitHeight="100.0" fitWidth="80.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" />
                </children>
             </HBox>
          </center>
       </BorderPane>
    </bottom>
    <center>
-      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+      <HBox alignment="CENTER" prefHeight="249.0" prefWidth="600.0" BorderPane.alignment="CENTER">
          <children>
-            <Pane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="129.0" prefWidth="110.0" style="-fx-background-color: azure;">
+            <Pane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="180.0" prefWidth="130.0" style="-fx-background-color: azure;">
                <effect>
                   <InnerShadow />
                </effect>
@@ -110,9 +109,9 @@
                   <Insets bottom="5.0" left="245.0" right="245.0" />
                </HBox.margin>
                <children>
-                  <HBox alignment="CENTER" prefHeight="126.0" prefWidth="112.0">
+                  <HBox alignment="CENTER" layoutY="-13.0" prefHeight="139.0" prefWidth="112.0">
                      <children>
-                        <ImageView fx:id="cartaDescarte" fitHeight="107.0" fitWidth="84.0" pickOnBounds="true" preserveRatio="true" />
+                        <ImageView fx:id="cartaDescarte" fitHeight="88.0" fitWidth="84.0" pickOnBounds="true" preserveRatio="true" />
                      </children>
                   </HBox>
                </children>
