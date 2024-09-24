@@ -169,6 +169,7 @@ public final class SceneController implements javafx.fxml.Initializable {
                         int cantidadCartas,
                         String cartaDescarte, ListaCartas cartasJugador, @SuppressWarnings("exports") Turno turno)
                         throws IOException {
+
                 root = FXMLLoader.load(SceneController.class.getResource("Tablero.fxml"));
                 stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
                 Scene scene = new Scene(root);

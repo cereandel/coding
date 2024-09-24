@@ -34,14 +34,6 @@ public final class PartidaUtilidades {
         mazoJugador.remove(i);
     }
 
-    public static boolean cartaExiste(String cartaLanzada, ListaCartas mazoJugador) {
-        for (Carta mazo : mazoJugador.getListaCartas()) {
-            if (cartaLanzada.equals(mazo.getIdCarta()))
-                return true;
-        }
-        return false;
-    }
-
     public static int regresarCartaPosicion(String cartaLanzada, ListaCartas mazoJugador) {
         int i = 0;
         for (Carta mazo : mazoJugador.getListaCartas()) {

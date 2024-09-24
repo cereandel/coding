@@ -1,47 +1,50 @@
 {
   "jugadores" : {
     "listaJugadores" : [ {
-      "nombre" : "cesar",
+      "nombre" : "wfq",
       "id" : "#001",
       "mazo" : {
-        "listaCartas" : [ ]
+        "listaCartas" : [ {
+          "idCarta" : "R3",
+          "color" : "R",
+          "numero" : 3
+        }, {
+          "idCarta" : "B4",
+          "color" : "B",
+          "numero" : 4
+        }, {
+          "idCarta" : "R9",
+          "color" : "R",
+          "numero" : 9
+        } ]
       }
     }, {
       "nombre" : "Computadora",
       "id" : "#00",
       "mazo" : {
         "listaCartas" : [ {
-          "idCarta" : "RS",
-          "color" : "R"
-        }, {
-          "idCarta" : "YR",
+          "idCarta" : "YT2",
           "color" : "Y"
         }, {
-          "idCarta" : "G3",
-          "color" : "G",
+          "idCarta" : "R7",
+          "color" : "R",
+          "numero" : 7
+        }, {
+          "idCarta" : "Y3",
+          "color" : "Y",
           "numero" : 3
         }, {
-          "idCarta" : "B9",
-          "color" : "B",
+          "idCarta" : "R9",
+          "color" : "R",
           "numero" : 9
         }, {
-          "idCarta" : "GR",
-          "color" : "G"
-        }, {
-          "idCarta" : "G6",
-          "color" : "G",
-          "numero" : 6
-        }, {
-          "idCarta" : "Y6",
-          "color" : "Y",
-          "numero" : 6
-        }, {
-          "idCarta" : "B1",
+          "idCarta" : "B6",
           "color" : "B",
-          "numero" : 1
+          "numero" : 6
         }, {
-          "idCarta" : "RS",
-          "color" : "R"
+          "idCarta" : "Y8",
+          "color" : "Y",
+          "numero" : 8
         } ]
       }
     } ]
@@ -49,10 +52,42 @@
   "turnos" : {
     "listaTurnos" : [ {
       "referenciaJugador" : {
-        "nombre" : "cesar",
+        "nombre" : "wfq",
         "id" : "#001",
         "mazo" : {
-          "listaCartas" : [ ]
+          "listaCartas" : [ {
+            "idCarta" : "R3",
+            "color" : "R",
+            "numero" : 3
+          }, {
+            "idCarta" : "Y5",
+            "color" : "Y",
+            "numero" : 5
+          }, {
+            "idCarta" : "Y6",
+            "color" : "Y",
+            "numero" : 6
+          }, {
+            "idCarta" : "B4",
+            "color" : "B",
+            "numero" : 4
+          }, {
+            "idCarta" : "R9",
+            "color" : "R",
+            "numero" : 9
+          }, {
+            "idCarta" : "G3",
+            "color" : "G",
+            "numero" : 3
+          }, {
+            "idCarta" : "B8",
+            "color" : "B",
+            "numero" : 8
+          }, {
+            "idCarta" : "B5",
+            "color" : "B",
+            "numero" : 5
+          } ]
         }
       }
     }, {
@@ -61,37 +96,21 @@
         "id" : "#00",
         "mazo" : {
           "listaCartas" : [ {
-            "idCarta" : "RS",
-            "color" : "R"
+            "idCarta" : "R7",
+            "color" : "R",
+            "numero" : 7
           }, {
-            "idCarta" : "YR",
-            "color" : "Y"
-          }, {
-            "idCarta" : "G3",
-            "color" : "G",
-            "numero" : 3
-          }, {
-            "idCarta" : "B9",
-            "color" : "B",
+            "idCarta" : "R9",
+            "color" : "R",
             "numero" : 9
           }, {
-            "idCarta" : "GR",
-            "color" : "G"
-          }, {
-            "idCarta" : "G6",
-            "color" : "G",
-            "numero" : 6
-          }, {
-            "idCarta" : "Y6",
-            "color" : "Y",
-            "numero" : 6
-          }, {
-            "idCarta" : "B1",
+            "idCarta" : "B6",
             "color" : "B",
-            "numero" : 1
+            "numero" : 6
           }, {
-            "idCarta" : "RS",
-            "color" : "R"
+            "idCarta" : "R2",
+            "color" : "R",
+            "numero" : 2
           } ]
         }
       }
@@ -99,309 +118,75 @@
   },
   "mazoGeneral" : {
     "listaCartas" : [ {
-      "idCarta" : "RR",
-      "color" : "R"
-    }, {
-      "idCarta" : "G4",
-      "color" : "G",
-      "numero" : 4
-    }, {
-      "idCarta" : "RT2",
-      "color" : "R"
-    }, {
-      "idCarta" : "R4",
-      "color" : "R",
-      "numero" : 4
-    }, {
-      "idCarta" : "Y3",
-      "color" : "Y",
-      "numero" : 3
-    }, {
-      "idCarta" : "G5",
-      "color" : "G",
-      "numero" : 5
-    }, {
-      "idCarta" : "R7",
-      "color" : "R",
-      "numero" : 7
-    }, {
-      "idCarta" : "R2",
-      "color" : "R",
-      "numero" : 2
-    }, {
-      "idCarta" : "GT2",
-      "color" : "G"
-    }, {
-      "idCarta" : "G7",
-      "color" : "G",
-      "numero" : 7
-    }, {
-      "idCarta" : "Y2",
-      "color" : "Y",
-      "numero" : 2
-    }, {
-      "idCarta" : "G8",
-      "color" : "G",
-      "numero" : 8
-    }, {
-      "idCarta" : "G1",
-      "color" : "G",
-      "numero" : 1
-    }, {
-      "idCarta" : "B4",
-      "color" : "B",
-      "numero" : 4
-    }, {
-      "idCarta" : "B6",
-      "color" : "B",
-      "numero" : 6
-    }, {
-      "idCarta" : "B2",
-      "color" : "B",
-      "numero" : 2
-    }, {
-      "idCarta" : "CT4",
+      "idCarta" : "CC",
       "color" : "N"
-    }, {
-      "idCarta" : "R2",
-      "color" : "R",
-      "numero" : 2
-    }, {
-      "idCarta" : "B3",
-      "color" : "B",
-      "numero" : 3
-    }, {
-      "idCarta" : "Y7",
-      "color" : "Y",
-      "numero" : 7
-    }, {
-      "idCarta" : "G3",
-      "color" : "G",
-      "numero" : 3
-    }, {
-      "idCarta" : "G7",
-      "color" : "G",
-      "numero" : 7
-    }, {
-      "idCarta" : "YT2",
-      "color" : "Y"
-    }, {
-      "idCarta" : "BR",
-      "color" : "B"
-    }, {
-      "idCarta" : "Y5",
-      "color" : "Y",
-      "numero" : 5
-    }, {
-      "idCarta" : "R3",
-      "color" : "R",
-      "numero" : 3
-    }, {
-      "idCarta" : "Y2",
-      "color" : "Y",
-      "numero" : 2
-    }, {
-      "idCarta" : "Y4",
-      "color" : "Y",
-      "numero" : 4
-    }, {
-      "idCarta" : "Y8",
-      "color" : "Y",
-      "numero" : 8
-    }, {
-      "idCarta" : "B0",
-      "color" : "B",
-      "numero" : 0
-    }, {
-      "idCarta" : "R9",
-      "color" : "R",
-      "numero" : 9
-    }, {
-      "idCarta" : "Y3",
-      "color" : "Y",
-      "numero" : 3
-    }, {
-      "idCarta" : "B4",
-      "color" : "B",
-      "numero" : 4
-    }, {
-      "idCarta" : "Y5",
-      "color" : "Y",
-      "numero" : 5
-    }, {
-      "idCarta" : "Y1",
-      "color" : "Y",
-      "numero" : 1
-    }, {
-      "idCarta" : "BS",
-      "color" : "B"
-    }, {
-      "idCarta" : "G0",
-      "color" : "G",
-      "numero" : 0
-    }, {
-      "idCarta" : "CT4",
-      "color" : "N"
-    }, {
-      "idCarta" : "R1",
-      "color" : "R",
-      "numero" : 1
     }, {
       "idCarta" : "GR",
       "color" : "G"
     }, {
-      "idCarta" : "RT2",
-      "color" : "R"
-    }, {
-      "idCarta" : "R4",
+      "idCarta" : "R5",
       "color" : "R",
-      "numero" : 4
+      "numero" : 5
     }, {
-      "idCarta" : "CC",
-      "color" : "N"
+      "idCarta" : "G7",
+      "color" : "G",
+      "numero" : 7
+    }, {
+      "idCarta" : "R8",
+      "color" : "R",
+      "numero" : 8
+    }, {
+      "idCarta" : "R8",
+      "color" : "R",
+      "numero" : 8
+    }, {
+      "idCarta" : "Y5",
+      "color" : "Y",
+      "numero" : 5
+    }, {
+      "idCarta" : "BR",
+      "color" : "B"
     }, {
       "idCarta" : "Y4",
       "color" : "Y",
       "numero" : 4
     }, {
-      "idCarta" : "G4",
-      "color" : "G",
-      "numero" : 4
+      "idCarta" : "YS",
+      "color" : "Y"
     }, {
-      "idCarta" : "Y8",
-      "color" : "Y",
-      "numero" : 8
+      "idCarta" : "CC",
+      "color" : "N"
     }, {
-      "idCarta" : "Y0",
-      "color" : "Y",
-      "numero" : 0
-    }, {
-      "idCarta" : "R7",
-      "color" : "R",
-      "numero" : 7
-    }, {
-      "idCarta" : "R9",
-      "color" : "R",
-      "numero" : 9
-    }, {
-      "idCarta" : "GT2",
-      "color" : "G"
+      "idCarta" : "B2",
+      "color" : "B",
+      "numero" : 2
     }, {
       "idCarta" : "B1",
       "color" : "B",
       "numero" : 1
     }, {
-      "idCarta" : "BS",
-      "color" : "B"
+      "idCarta" : "G7",
+      "color" : "G",
+      "numero" : 7
     }, {
-      "idCarta" : "YR",
-      "color" : "Y"
+      "idCarta" : "B9",
+      "color" : "B",
+      "numero" : 9
     }, {
-      "idCarta" : "CT4",
-      "color" : "N"
-    }, {
-      "idCarta" : "R6",
-      "color" : "R",
-      "numero" : 6
-    }, {
-      "idCarta" : "R6",
-      "color" : "R",
-      "numero" : 6
-    }, {
-      "idCarta" : "R0",
-      "color" : "R",
+      "idCarta" : "Y0",
+      "color" : "Y",
       "numero" : 0
     }, {
-      "idCarta" : "R5",
-      "color" : "R",
-      "numero" : 5
-    }, {
-      "idCarta" : "BT2",
-      "color" : "B"
-    }, {
-      "idCarta" : "B8",
-      "color" : "B",
-      "numero" : 8
-    }, {
-      "idCarta" : "B8",
-      "color" : "B",
-      "numero" : 8
-    }, {
-      "idCarta" : "B6",
-      "color" : "B",
-      "numero" : 6
-    }, {
-      "idCarta" : "BT2",
-      "color" : "B"
-    }, {
-      "idCarta" : "G5",
-      "color" : "G",
-      "numero" : 5
-    }, {
-      "idCarta" : "YS",
+      "idCarta" : "YT2",
       "color" : "Y"
     }, {
-      "idCarta" : "RR",
-      "color" : "R"
-    }, {
-      "idCarta" : "B7",
-      "color" : "B",
-      "numero" : 7
-    }, {
-      "idCarta" : "R5",
-      "color" : "R",
-      "numero" : 5
-    }, {
-      "idCarta" : "R8",
-      "color" : "R",
-      "numero" : 8
-    }, {
-      "idCarta" : "CC",
-      "color" : "N"
-    }, {
-      "idCarta" : "B7",
-      "color" : "B",
-      "numero" : 7
-    }, {
-      "idCarta" : "GS",
-      "color" : "G"
-    }, {
-      "idCarta" : "G1",
-      "color" : "G",
-      "numero" : 1
-    }, {
-      "idCarta" : "GS",
-      "color" : "G"
-    }, {
-      "idCarta" : "BR",
-      "color" : "B"
-    }, {
-      "idCarta" : "Y1",
+      "idCarta" : "Y2",
       "color" : "Y",
-      "numero" : 1
-    }, {
-      "idCarta" : "R8",
-      "color" : "R",
-      "numero" : 8
-    }, {
-      "idCarta" : "G2",
-      "color" : "G",
       "numero" : 2
     }, {
-      "idCarta" : "R3",
+      "idCarta" : "R4",
       "color" : "R",
-      "numero" : 3
-    }, {
-      "idCarta" : "Y7",
-      "color" : "Y",
-      "numero" : 7
-    }, {
-      "idCarta" : "YS",
-      "color" : "Y"
-    }, {
-      "idCarta" : "B5",
-      "color" : "B",
-      "numero" : 5
+      "numero" : 4
     }, {
       "idCarta" : "G8",
       "color" : "G",
@@ -410,9 +195,45 @@
       "idCarta" : "CC",
       "color" : "N"
     }, {
+      "idCarta" : "G5",
+      "color" : "G",
+      "numero" : 5
+    }, {
+      "idCarta" : "BS",
+      "color" : "B"
+    }, {
+      "idCarta" : "B4",
+      "color" : "B",
+      "numero" : 4
+    }, {
+      "idCarta" : "R4",
+      "color" : "R",
+      "numero" : 4
+    }, {
       "idCarta" : "G6",
       "color" : "G",
       "numero" : 6
+    }, {
+      "idCarta" : "RS",
+      "color" : "R"
+    }, {
+      "idCarta" : "CT4",
+      "color" : "N"
+    }, {
+      "idCarta" : "B1",
+      "color" : "B",
+      "numero" : 1
+    }, {
+      "idCarta" : "GS",
+      "color" : "G"
+    }, {
+      "idCarta" : "Y6",
+      "color" : "Y",
+      "numero" : 6
+    }, {
+      "idCarta" : "Y8",
+      "color" : "Y",
+      "numero" : 8
     }, {
       "idCarta" : "B3",
       "color" : "B",
@@ -421,56 +242,250 @@
       "idCarta" : "R1",
       "color" : "R",
       "numero" : 1
-    } ]
-  },
-  "mazoDescarte" : {
-    "listaCartas" : [ {
+    }, {
+      "idCarta" : "G6",
+      "color" : "G",
+      "numero" : 6
+    }, {
+      "idCarta" : "Y2",
+      "color" : "Y",
+      "numero" : 2
+    }, {
+      "idCarta" : "G3",
+      "color" : "G",
+      "numero" : 3
+    }, {
+      "idCarta" : "R0",
+      "color" : "R",
+      "numero" : 0
+    }, {
+      "idCarta" : "GT2",
+      "color" : "G"
+    }, {
+      "idCarta" : "Y1",
+      "color" : "Y",
+      "numero" : 1
+    }, {
+      "idCarta" : "G8",
+      "color" : "G",
+      "numero" : 8
+    }, {
       "idCarta" : "Y9",
       "color" : "Y",
       "numero" : 9
     }, {
-      "idCarta" : "YT2",
-      "color" : "Y"
-    }, {
-      "idCarta" : "CT4",
-      "color" : "Y"
-    }, {
-      "idCarta" : "G2",
-      "color" : "G",
-      "numero" : 2
-    }, {
-      "idCarta" : "G9",
-      "color" : "G",
-      "numero" : 9
-    }, {
-      "idCarta" : "G9",
-      "color" : "G",
-      "numero" : 9
-    }, {
-      "idCarta" : "B9",
-      "color" : "B",
-      "numero" : 9
-    }, {
-      "idCarta" : "B2",
-      "color" : "B",
-      "numero" : 2
+      "idCarta" : "R6",
+      "color" : "R",
+      "numero" : 6
     }, {
       "idCarta" : "B5",
       "color" : "B",
       "numero" : 5
     }, {
-      "idCarta" : "CC",
+      "idCarta" : "R3",
+      "color" : "R",
+      "numero" : 3
+    }, {
+      "idCarta" : "Y3",
+      "color" : "Y",
+      "numero" : 3
+    }, {
+      "idCarta" : "RT2",
+      "color" : "R"
+    }, {
+      "idCarta" : "G9",
+      "color" : "G",
+      "numero" : 9
+    }, {
+      "idCarta" : "BT2",
       "color" : "B"
+    }, {
+      "idCarta" : "Y1",
+      "color" : "Y",
+      "numero" : 1
+    }, {
+      "idCarta" : "GR",
+      "color" : "G"
+    }, {
+      "idCarta" : "R5",
+      "color" : "R",
+      "numero" : 5
+    }, {
+      "idCarta" : "B6",
+      "color" : "B",
+      "numero" : 6
+    }, {
+      "idCarta" : "G5",
+      "color" : "G",
+      "numero" : 5
+    }, {
+      "idCarta" : "G1",
+      "color" : "G",
+      "numero" : 1
+    }, {
+      "idCarta" : "Y4",
+      "color" : "Y",
+      "numero" : 4
+    }, {
+      "idCarta" : "B3",
+      "color" : "B",
+      "numero" : 3
+    }, {
+      "idCarta" : "R2",
+      "color" : "R",
+      "numero" : 2
+    }, {
+      "idCarta" : "B7",
+      "color" : "B",
+      "numero" : 7
+    }, {
+      "idCarta" : "B8",
+      "color" : "B",
+      "numero" : 8
+    }, {
+      "idCarta" : "GT2",
+      "color" : "G"
+    }, {
+      "idCarta" : "B0",
+      "color" : "B",
+      "numero" : 0
+    }, {
+      "idCarta" : "B7",
+      "color" : "B",
+      "numero" : 7
+    }, {
+      "idCarta" : "CT4",
+      "color" : "N"
+    }, {
+      "idCarta" : "R1",
+      "color" : "R",
+      "numero" : 1
+    }, {
+      "idCarta" : "Y7",
+      "color" : "Y",
+      "numero" : 7
+    }, {
+      "idCarta" : "B9",
+      "color" : "B",
+      "numero" : 9
+    }, {
+      "idCarta" : "YR",
+      "color" : "Y"
+    }, {
+      "idCarta" : "GS",
+      "color" : "G"
+    }, {
+      "idCarta" : "RR",
+      "color" : "R"
+    }, {
+      "idCarta" : "G2",
+      "color" : "G",
+      "numero" : 2
+    }, {
+      "idCarta" : "B2",
+      "color" : "B",
+      "numero" : 2
+    }, {
+      "idCarta" : "CT4",
+      "color" : "N"
+    }, {
+      "idCarta" : "G1",
+      "color" : "G",
+      "numero" : 1
+    }, {
+      "idCarta" : "R6",
+      "color" : "R",
+      "numero" : 6
+    }, {
+      "idCarta" : "G4",
+      "color" : "G",
+      "numero" : 4
+    }, {
+      "idCarta" : "Y9",
+      "color" : "Y",
+      "numero" : 9
+    }, {
+      "idCarta" : "RT2",
+      "color" : "R"
+    }, {
+      "idCarta" : "YS",
+      "color" : "Y"
+    }, {
+      "idCarta" : "Y7",
+      "color" : "Y",
+      "numero" : 7
+    }, {
+      "idCarta" : "G2",
+      "color" : "G",
+      "numero" : 2
+    }, {
+      "idCarta" : "BS",
+      "color" : "B"
+    }, {
+      "idCarta" : "CT4",
+      "color" : "N"
+    }, {
+      "idCarta" : "BT2",
+      "color" : "B"
+    }, {
+      "idCarta" : "BR",
+      "color" : "B"
+    }, {
+      "idCarta" : "YR",
+      "color" : "Y"
+    }, {
+      "idCarta" : "RS",
+      "color" : "R"
+    }, {
+      "idCarta" : "CC",
+      "color" : "N"
+    }, {
+      "idCarta" : "RR",
+      "color" : "R"
+    }, {
+      "idCarta" : "R7",
+      "color" : "R",
+      "numero" : 7
+    } ]
+  },
+  "mazoDescarte" : {
+    "listaCartas" : [ {
+      "idCarta" : "Y5",
+      "color" : "Y",
+      "numero" : 5
+    }, {
+      "idCarta" : "Y8",
+      "color" : "Y",
+      "numero" : 8
+    }, {
+      "idCarta" : "YT2",
+      "color" : "Y"
     }, {
       "idCarta" : "Y6",
       "color" : "Y",
       "numero" : 6
     }, {
-      "idCarta" : "Y9",
+      "idCarta" : "Y3",
       "color" : "Y",
+      "numero" : 3
+    }, {
+      "idCarta" : "G3",
+      "color" : "G",
+      "numero" : 3
+    }, {
+      "idCarta" : "G0",
+      "color" : "G",
+      "numero" : 0
+    }, {
+      "idCarta" : "G4",
+      "color" : "G",
+      "numero" : 4
+    }, {
+      "idCarta" : "G9",
+      "color" : "G",
       "numero" : 9
     } ]
   },
-  "indiceTurno" : 1,
+  "indiceTurno" : 0,
   "sentidoRegular" : true
 }

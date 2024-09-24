@@ -20,6 +20,8 @@ public class Partida {
     private static boolean primeraVuelta;
     private static Boolean invalido;
     private static Boolean saltado;
+    private static Jugador maquina;
+    private static Jugador jugador;
 
     public Partida(ListaJugadores jugadores, ListaTurnos turnos, ListaCartas mazoGeneral, ListaCartas mazoDescarte,
             int indiceTurno, boolean sentidoRegular, boolean primeraVuelta) {
@@ -32,11 +34,11 @@ public class Partida {
         Partida.primeraVuelta = primeraVuelta;
         Partida.invalido = false;
         Partida.saltado = false;
+        Partida.maquina = jugadores.buscar("#00");
+        Partida.jugador = jugadores.buscar("#001");
     }
 
     public void iniciar(ActionEvent event) throws IOException {
-        Jugador maquina = jugadores.buscar("#00");
-        Jugador jugador = jugadores.buscar("#001");
         SceneController.escenaPartida(event, jugador.getNombre(), maquina.getMazo().size(),
                 mazoDescarte.get(0).getIdCarta(), jugador.getMazo(),
                 turnos.getListaTurnos().get(0));
@@ -62,8 +64,6 @@ public class Partida {
 
         Turno turno = null;
         String input = "";
-        Jugador maquina = jugadores.buscar("#00");
-        Jugador jugador = jugadores.buscar("#001");
 
         while (primeraVuelta) {
             Carta primeraCarta = mazoDescarte.get(0);
@@ -111,117 +111,117 @@ public class Partida {
             } else {
                 input = IoPartida.seleccionarCartaMaquina(input, turno, mazoDescarte);
             }
-            if (!PartidaUtilidades.cartaExiste(input, turno.getReferenciaJugador().getMazo())) {
+            if (!PartidaUtilidades.validarCartaColor(input, mazoDescarte.get(0))
+                    && !PartidaUtilidades.validarCartaNumero(input, mazoDescarte.get(0))) {
                 SceneController.cartaInvalida();
                 invalido = true;
             } else {
-                if (!PartidaUtilidades.validarCartaColor(input, mazoDescarte.get(0))
-                        && !PartidaUtilidades.validarCartaNumero(input, mazoDescarte.get(0))) {
-                    SceneController.cartaInvalida();
-                    invalido = true;
+                if (turno.getReferenciaJugador().getMazo().size() == 2) {
+                    if (!turno.getReferenciaJugador().getId().equals("#00")) {
+                        SceneController.cantarUno(0);
+                    } else {
+                        SceneController.cantarUno(1);
+                    }
+                }
+
+                ListaCartas mazoJugador = turno.getReferenciaJugador().getMazo();
+                int posicionCarta = PartidaUtilidades.regresarCartaPosicion(input, mazoJugador);
+                if (turno.getReferenciaJugador().getId().equals("#001")) {
+                    PartidaUtilidades.lanzarCarta(jugador.getMazo(), mazoDescarte, posicionCarta);
                 } else {
-                    if (turno.getReferenciaJugador().getMazo().size() == 2) {
-                        if (!turno.getReferenciaJugador().getId().equals("#00")) {
-                            SceneController.cantarUno(0);
+                    PartidaUtilidades.lanzarCarta(mazoJugador, mazoDescarte, posicionCarta);
+                }
+
+                if (mazoDescarte.get(0).getIdCarta().substring(1).equals("T2")) {
+                    int cantidadDeCartasLanzadas = 0;
+                    if (sentidoRegular) {
+                        if (indiceTurno == turnos.size() - 1) {
+                            cantidadDeCartasLanzadas = PartidaUtilidades.tomarDosCartas(
+                                    turnos.getListaTurnos().get(0).getReferenciaJugador(),
+                                    mazoGeneral, mazoDescarte,
+                                    cantidadDeCartasLanzadas);
                         } else {
-                            SceneController.cantarUno(1);
+                            cantidadDeCartasLanzadas = PartidaUtilidades.tomarDosCartas(
+                                    turnos.getListaTurnos().get(indiceTurno + 1).getReferenciaJugador(),
+                                    mazoGeneral, mazoDescarte,
+                                    cantidadDeCartasLanzadas);
+                        }
+                    } else {
+                        if (indiceTurno == 0) {
+                            cantidadDeCartasLanzadas = PartidaUtilidades.tomarDosCartas(
+                                    turnos.getListaTurnos().get(turnos.size() - 1).getReferenciaJugador(),
+                                    mazoGeneral, mazoDescarte,
+                                    cantidadDeCartasLanzadas);
+                        } else {
+                            cantidadDeCartasLanzadas = PartidaUtilidades.tomarDosCartas(
+                                    turnos.getListaTurnos().get(indiceTurno - 1).getReferenciaJugador(),
+                                    mazoGeneral, mazoDescarte,
+                                    cantidadDeCartasLanzadas);
                         }
                     }
-                    PartidaUtilidades.lanzarCarta(turno.getReferenciaJugador().getMazo(), mazoDescarte,
-                            PartidaUtilidades.regresarCartaPosicion(input,
-                                    turno.getReferenciaJugador().getMazo()));
+                    indiceTurno = PartidaUtilidades.saltarTurno(sentidoRegular, indiceTurno, turnos.size());
+                    saltado = true;
+                }
 
-                    if (mazoDescarte.get(0).getIdCarta().substring(1).equals("T2")) {
-                        int cantidadDeCartasLanzadas = 0;
-                        if (sentidoRegular) {
-                            if (indiceTurno == turnos.size() - 1) {
-                                cantidadDeCartasLanzadas = PartidaUtilidades.tomarDosCartas(
-                                        turnos.getListaTurnos().get(0).getReferenciaJugador(),
-                                        mazoGeneral, mazoDescarte,
-                                        cantidadDeCartasLanzadas);
-                            } else {
-                                cantidadDeCartasLanzadas = PartidaUtilidades.tomarDosCartas(
-                                        turnos.getListaTurnos().get(indiceTurno + 1).getReferenciaJugador(),
-                                        mazoGeneral, mazoDescarte,
-                                        cantidadDeCartasLanzadas);
-                            }
-                        } else {
-                            if (indiceTurno == 0) {
-                                cantidadDeCartasLanzadas = PartidaUtilidades.tomarDosCartas(
-                                        turnos.getListaTurnos().get(turnos.size() - 1).getReferenciaJugador(),
-                                        mazoGeneral, mazoDescarte,
-                                        cantidadDeCartasLanzadas);
-                            } else {
-                                cantidadDeCartasLanzadas = PartidaUtilidades.tomarDosCartas(
-                                        turnos.getListaTurnos().get(indiceTurno - 1).getReferenciaJugador(),
-                                        mazoGeneral, mazoDescarte,
-                                        cantidadDeCartasLanzadas);
-                            }
+                if (mazoDescarte.get(0).getIdCarta().substring(1).equals("R")) {
+                    sentidoRegular = PartidaUtilidades.accionReversa(sentidoRegular);
+                    indiceTurno = PartidaUtilidades.saltarTurno(sentidoRegular, indiceTurno, turnos.size());
+                    saltado = true;
+                }
+
+                if (mazoDescarte.get(0).getIdCarta().substring(1).equals("S")) {
+                    indiceTurno = PartidaUtilidades.saltarTurno(sentidoRegular, indiceTurno, turnos.size());
+                    saltado = true;
+                }
+
+                if (mazoDescarte.get(0).getIdCarta().equals("CC")) {
+                    PartidaUtilidades.cambiarColor(turno, turnos, indiceTurno, mazoDescarte);
+                    if (sentidoRegular) {
+                        indiceTurno++;
+                        if (indiceTurno >= turnos.size()) {
+                            indiceTurno = 0;
                         }
-                        indiceTurno = PartidaUtilidades.saltarTurno(sentidoRegular, indiceTurno, turnos.size());
-                        saltado = true;
-                    }
-
-                    if (mazoDescarte.get(0).getIdCarta().substring(1).equals("R")) {
-                        sentidoRegular = PartidaUtilidades.accionReversa(sentidoRegular);
-                        indiceTurno = PartidaUtilidades.saltarTurno(sentidoRegular, indiceTurno, turnos.size());
-                        saltado = true;
-                    }
-
-                    if (mazoDescarte.get(0).getIdCarta().substring(1).equals("S")) {
-                        indiceTurno = PartidaUtilidades.saltarTurno(sentidoRegular, indiceTurno, turnos.size());
-                        saltado = true;
-                    }
-
-                    if (mazoDescarte.get(0).getIdCarta().equals("CC")) {
-                        PartidaUtilidades.cambiarColor(turno, turnos, indiceTurno, mazoDescarte);
-                        if (sentidoRegular) {
-                            indiceTurno++;
-                            if (indiceTurno >= turnos.size()) {
-                                indiceTurno = 0;
-                            }
-                        } else {
-                            indiceTurno--;
-                            if (indiceTurno < 0) {
-                                indiceTurno = turnos.size() - 1;
-                            }
+                    } else {
+                        indiceTurno--;
+                        if (indiceTurno < 0) {
+                            indiceTurno = turnos.size() - 1;
                         }
                     }
+                }
 
-                    if (mazoDescarte.get(0).getIdCarta().equals("CT4")) {
-                        int cantidadDeCartasLanzadas = 0;
-                        if (sentidoRegular) {
-                            if (indiceTurno == turnos.size() - 1) {
-                                cantidadDeCartasLanzadas = PartidaUtilidades.tomarCuatroCartas(
-                                        turnos.getListaTurnos().get(0).getReferenciaJugador(),
-                                        mazoGeneral, mazoDescarte,
-                                        cantidadDeCartasLanzadas, turnos, turno);
-                            } else {
-                                cantidadDeCartasLanzadas = PartidaUtilidades.tomarCuatroCartas(
-                                        turnos.getListaTurnos().get(indiceTurno + 1).getReferenciaJugador(),
-                                        mazoGeneral, mazoDescarte,
-                                        cantidadDeCartasLanzadas, turnos, turno);
-                            }
+                if (mazoDescarte.get(0).getIdCarta().equals("CT4")) {
+                    int cantidadDeCartasLanzadas = 0;
+                    if (sentidoRegular) {
+                        if (indiceTurno == turnos.size() - 1) {
+                            cantidadDeCartasLanzadas = PartidaUtilidades.tomarCuatroCartas(
+                                    turnos.getListaTurnos().get(0).getReferenciaJugador(),
+                                    mazoGeneral, mazoDescarte,
+                                    cantidadDeCartasLanzadas, turnos, turno);
                         } else {
-                            if (indiceTurno == 0) {
-                                cantidadDeCartasLanzadas = PartidaUtilidades.tomarCuatroCartas(
-                                        turnos.getListaTurnos().get(turnos.size() - 1).getReferenciaJugador(),
-                                        mazoGeneral, mazoDescarte,
-                                        cantidadDeCartasLanzadas, turnos, turno);
-                            } else {
-                                cantidadDeCartasLanzadas = PartidaUtilidades.tomarCuatroCartas(
-                                        turnos.getListaTurnos().get(indiceTurno - 1).getReferenciaJugador(),
-                                        mazoGeneral, mazoDescarte,
-                                        cantidadDeCartasLanzadas, turnos, turno);
-                            }
+                            cantidadDeCartasLanzadas = PartidaUtilidades.tomarCuatroCartas(
+                                    turnos.getListaTurnos().get(indiceTurno + 1).getReferenciaJugador(),
+                                    mazoGeneral, mazoDescarte,
+                                    cantidadDeCartasLanzadas, turnos, turno);
                         }
-                        indiceTurno = PartidaUtilidades.saltarTurno(sentidoRegular, indiceTurno, turnos.size());
-                        saltado = true;
+                    } else {
+                        if (indiceTurno == 0) {
+                            cantidadDeCartasLanzadas = PartidaUtilidades.tomarCuatroCartas(
+                                    turnos.getListaTurnos().get(turnos.size() - 1).getReferenciaJugador(),
+                                    mazoGeneral, mazoDescarte,
+                                    cantidadDeCartasLanzadas, turnos, turno);
+                        } else {
+                            cantidadDeCartasLanzadas = PartidaUtilidades.tomarCuatroCartas(
+                                    turnos.getListaTurnos().get(indiceTurno - 1).getReferenciaJugador(),
+                                    mazoGeneral, mazoDescarte,
+                                    cantidadDeCartasLanzadas, turnos, turno);
+                        }
                     }
-                    if (mazoDescarte.getListaCartas().get(0) instanceof CartaEnumerada) {
-                        indiceTurno = gestorTurnos(indiceTurno, mazoDescarte, turnos,
-                                sentidoRegular);
-                    }
+                    indiceTurno = PartidaUtilidades.saltarTurno(sentidoRegular, indiceTurno, turnos.size());
+                    saltado = true;
+                }
+                if (mazoDescarte.getListaCartas().get(0) instanceof CartaEnumerada) {
+                    indiceTurno = gestorTurnos(indiceTurno, mazoDescarte, turnos,
+                            sentidoRegular);
                 }
             }
         }
@@ -247,6 +247,7 @@ public class Partida {
         }
         ArchivoJson.guardar(jugadores, turnos, mazoGeneral, mazoDescarte, indiceTurno, sentidoRegular);
         SceneController.actualizarEscena(mazoDescarte.get(0).getIdCarta(),
-                jugador.getMazo(), maquina.getMazo().size(), turno.getReferenciaJugador().getNombre(), indiceTurno);
+                jugador.getMazo(), maquina.getMazo().size(),
+                turno.getReferenciaJugador().getNombre(), indiceTurno);
     }
 }
