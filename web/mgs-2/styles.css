@@ -1,3 +1,19 @@
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }to {
+        opacity: 1;
+    }
+}
+
+@keyframes fadeOut {
+    from {
+        opacity: 1;
+    }to {
+        opacity: 0;
+    }
+}
+
 body{
     background-color: #000000;
     font-family: Arial, sans-serif;
@@ -6,17 +22,17 @@ body{
     color: #FFFFFF;
 }
 
-header.TopHeader{
+.TopHeader{
     background-color: #000000;
     align-items: left;
 }
 
-header.TopHeader img{
+.TopHeader img{
     height: 15%;
     width: 10%;
 }
 
-header.MainHeader{
+.MainHeader{
     height: 800px;
     display: flex;
     justify-content: center;
@@ -26,10 +42,12 @@ header.MainHeader{
 }
 
 .header-image{
-    transition: opacity 0.5s ease-out;
+    animation: fadeOut linear both;
+    animation-timeline: view();
+    animation-range: entry 100% cover 60%;
 }
 
-section.Description{
+.Description{
     padding: 1%;
     text-align: center;
     width: 50%;
@@ -37,7 +55,7 @@ section.Description{
     font-size: 1.5em;
 }
 
-section.Platforms{
+.Platforms{
     background-color: rgb(19, 19, 19);
     display: flex;
     align-items: center;
@@ -45,18 +63,18 @@ section.Platforms{
     padding: 1%;
 }
 
-section.Platforms strong{
+.Platforms strong{
     padding-right: 2%;
 }
 
-section.Platforms img{
+.Platforms img{
     height: 20px;
     width: 10%;
     margin: 0.4%;
     padding: 1%;
 }
 
-section.Platforms img:hover {
+.Platforms img:hover {
     opacity: 0.5;
     transition: 0.5s ease-out;
 }
@@ -73,31 +91,24 @@ section.Platforms img:hover {
     background-image: radial-gradient(circle, rgba(255, 255, 255, 0.178), rgb(87, 87, 87));
 }
 
-section.Gameplay {
+.Gameplay{
     height: 500px;
-    position: relative;
-    overflow: hidden;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     justify-content: center;
     padding-left: 20px;
     padding-right: 600px;
-    transition: opacity 0.5s ease-out;
+    background-image: url(assets/gameplay.gif);
+    background-repeat: no-repeat;
+    background-size: 100%;
+    background-position: center;
+    animation: fadeIn linear both;
+    animation-timeline: view();
+    animation-range: entry 50% cover 50%;
 }
 
-#background-gif {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transform: translate(-50%, -50%);
-    z-index: -1;
-}
-
-section.Gameplay p {
+.Gameplay p {
     font-size: 1.5em;
     color: white;
     margin-bottom: 1%;
@@ -107,21 +118,20 @@ section.Gameplay p {
     border-radius: 5px; 
 }
 
-section.Charaters{
-    margin: auto;
-    padding: 20px;
-    max-width: 1200px;
-    box-sizing: border-box;
+.Characters{
+    animation: fadeIn linear both;
+    animation-timeline: view();
+    animation-range: entry 50% cover 50%;
 }
 
-section.Characters h1{
+.Characters h1{
     text-align: right;
     padding: 20px;
     text-decoration: underline;
     text-decoration-color: aqua;
 }
 
-section.Characters ul {
+.Characters ul {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
@@ -130,12 +140,12 @@ section.Characters ul {
     list-style-type: none;
 }
 
-section.Characters ul li:hover {
+.Characters ul li:hover {
     transform: translateY(-10px);
     transition: transform 0.3s ease-in-out;
 }
 
-section.Characters ul li {
+.Characters ul li {
     flex: 1 1 calc(50% - 40px);
     box-sizing: border-box;
     display: flex;
@@ -143,17 +153,17 @@ section.Characters ul li {
     align-items: center;
     gap: 6px;
     text-align: center;
-    border: 1px solid rgb(0, 217, 255);
+    border: 2px solid rgb(0, 217, 255);
     border-radius: 5px;
     margin-right: 30px;
 }
 
-section.Characters ul li strong{
+.Characters ul li strong{
     color: rgb(0, 217, 255);
     font-size: 1.2em;
 }
 
-section.Characters img {
+.Characters img {
     width: 150px;
     height: 150px;
     border-radius: 5px;
